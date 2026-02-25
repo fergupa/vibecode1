@@ -31,7 +31,7 @@ Accept defaults. This creates the full Next.js skeleton in the current directory
 **Step 2: Install core dependencies**
 
 ```bash
-npm install prisma @prisma/client next-auth@5 bcryptjs
+npm install prisma @prisma/client next-auth bcryptjs
 npm install -D @types/bcryptjs
 ```
 
@@ -130,6 +130,7 @@ model TaxonomyNode {
 
   @@unique([projectId, code])
   @@index([projectId, parentId])
+  @@index([projectId, level])
 }
 
 model Employee {
@@ -437,6 +438,7 @@ git commit -m "feat: add NextAuth.js credentials authentication"
 - Create: `src/app/admin/layout.tsx`
 - Create: `src/app/admin/page.tsx`
 - Create: `src/components/admin-sidebar.tsx`
+- Create: `src/components/providers.tsx`
 
 **Step 1: Install shadcn/ui components needed**
 
@@ -561,24 +563,45 @@ export function AdminSidebar() {
 }
 ```
 
-**Step 4: Create admin layout**
+**Step 4: Create SessionProvider wrapper**
+
+Create `src/components/providers.tsx`:
+
+```tsx
+"use client";
+
+import { SessionProvider } from "next-auth/react";
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <SessionProvider>{children}</SessionProvider>;
+}
+```
+
+> **Why:** NextAuth v4 client-side hooks (`signIn`, `signOut`, `useSession`) require a `<SessionProvider>` wrapper. Without this, the login page and admin sidebar will throw runtime errors.
+
+**Step 5: Create admin layout**
 
 Create `src/app/admin/layout.tsx`:
 
 ```tsx
 import { AdminSidebar } from "@/components/admin-sidebar";
+import { Providers } from "@/components/providers";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen">
-      <AdminSidebar />
-      <main className="flex-1 overflow-auto p-8">{children}</main>
-    </div>
+    <Providers>
+      <div className="flex h-screen">
+        <AdminSidebar />
+        <main className="flex-1 overflow-auto p-8">{children}</main>
+      </div>
+    </Providers>
   );
 }
 ```
 
-**Step 5: Create admin dashboard placeholder**
+> **Note:** Also wrap the login page's parent layout (or the root `src/app/layout.tsx`) with `<Providers>` since the login page also uses `signIn` from `next-auth/react`.
+
+**Step 6: Create admin dashboard placeholder**
 
 Create `src/app/admin/page.tsx`:
 
@@ -595,7 +618,7 @@ export default function AdminDashboard() {
 }
 ```
 
-**Step 6: Verify login flow works end-to-end**
+**Step 7: Verify login flow works end-to-end**
 
 ```bash
 npm run dev
@@ -605,10 +628,10 @@ npm run dev
 2. Login with admin/admin → redirected to `/admin` dashboard
 3. Sidebar navigation works
 
-**Step 7: Commit**
+**Step 8: Commit**
 
 ```bash
-git add src/app/login src/app/admin src/components/admin-sidebar.tsx
+git add src/app/login src/app/admin src/components/admin-sidebar.tsx src/components/providers.tsx
 git commit -m "feat: add login page and admin layout with sidebar navigation"
 ```
 
@@ -677,12 +700,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  const { id } = await params;
   const project = await prisma.project.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: {
       _count: {
         select: { taxonomyNodes: true, employees: true, surveyCampaigns: true },
@@ -694,13 +718,14 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   return NextResponse.json(project);
 }
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  const { id } = await params;
   const body = await req.json();
   const project = await prisma.project.update({
-    where: { id: params.id },
+    where: { id },
     data: {
       ...(body.name && { name: body.name.trim() }),
       ...(body.description !== undefined && { description: body.description?.trim() || null }),
@@ -713,11 +738,12 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   return NextResponse.json(project);
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  await prisma.project.delete({ where: { id: params.id } });
+  const { id } = await params;
+  await prisma.project.delete({ where: { id } });
   return NextResponse.json({ ok: true });
 }
 ```
@@ -844,6 +870,13 @@ git commit -m "feat: add project selection dashboard"
 
 ## Phase 3: Taxonomy Management
 
+> **IMPORTANT (Next.js 15):** All API route handlers with dynamic segments (`[id]`, `[nodeId]`, `[campaignId]`, `[token]`) must use async params:
+> ```typescript
+> export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+>   const { id } = await params;
+> ```
+> This applies to every route handler in Phases 3-7. See Task 6 for the corrected pattern.
+
 ### Task 8: Create Taxonomy API routes
 
 **Files:**
@@ -899,7 +932,8 @@ git commit -m "feat: add taxonomy CRUD, APQC seed, and CSV import API routes"
 **Step 1: Install additional shadcn/ui components**
 
 ```bash
-npx shadcn@latest add dialog select badge tooltip tree-view scroll-area
+npx shadcn@latest add dialog select badge tooltip scroll-area
+# Note: tree-view is NOT an official shadcn component. Use react-arborist (already installed) for the tree UI.
 ```
 
 **Step 2: Build the taxonomy tree component**
@@ -980,8 +1014,9 @@ git commit -m "feat: add Employee CRUD and CSV import API routes"
 **Step 1: Install shadcn/ui data table components**
 
 ```bash
-npx shadcn@latest add table data-table checkbox
+npx shadcn@latest add table checkbox
 npm install @tanstack/react-table
+# Note: data-table is a shadcn guide (not an installable component). Build using Table + @tanstack/react-table.
 ```
 
 **Step 2: Build the employee data table**
