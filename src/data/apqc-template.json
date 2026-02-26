@@ -1,0 +1,1997 @@
+[
+  {
+    "code": "1.0",
+    "name": "Develop Vision and Strategy",
+    "level": 1,
+    "parentCode": null,
+    "description": "Define and develop the organization's vision, mission, and long-term strategic direction."
+  },
+  {
+    "code": "1.1",
+    "name": "Define the business concept and long-term vision",
+    "level": 2,
+    "parentCode": "1.0",
+    "description": "Establish the fundamental business concept, purpose, and aspirational long-term vision for the organization."
+  },
+  {
+    "code": "1.1.1",
+    "name": "Assess the external environment",
+    "level": 3,
+    "parentCode": "1.1",
+    "description": "Analyze external factors including market trends, competitive landscape, and regulatory environment."
+  },
+  {
+    "code": "1.1.1.1",
+    "name": "Analyze and evaluate competitive environment",
+    "level": 4,
+    "parentCode": "1.1.1",
+    "description": "Conduct competitive analysis to identify key competitors, their strengths, weaknesses, and market positioning."
+  },
+  {
+    "code": "1.1.1.2",
+    "name": "Identify economic trends",
+    "level": 4,
+    "parentCode": "1.1.1",
+    "description": "Monitor and evaluate macroeconomic indicators and trends that may impact the business."
+  },
+  {
+    "code": "1.1.1.3",
+    "name": "Identify political and regulatory issues",
+    "level": 4,
+    "parentCode": "1.1.1",
+    "description": "Track legislative, regulatory, and political developments relevant to the organization."
+  },
+  {
+    "code": "1.1.2",
+    "name": "Survey market and determine customer needs and wants",
+    "level": 3,
+    "parentCode": "1.1",
+    "description": "Conduct market research to understand customer requirements, preferences, and unmet needs."
+  },
+  {
+    "code": "1.1.2.1",
+    "name": "Conduct qualitative and quantitative market assessments",
+    "level": 4,
+    "parentCode": "1.1.2",
+    "description": "Perform surveys, focus groups, interviews, and data analysis to assess market conditions."
+  },
+  {
+    "code": "1.1.2.2",
+    "name": "Capture and assess customer needs",
+    "level": 4,
+    "parentCode": "1.1.2",
+    "description": "Gather voice-of-the-customer data and translate it into actionable business requirements."
+  },
+  {
+    "code": "1.2",
+    "name": "Develop business strategy",
+    "level": 2,
+    "parentCode": "1.0",
+    "description": "Formulate the overarching business strategy including strategic objectives, initiatives, and resource allocation."
+  },
+  {
+    "code": "1.2.1",
+    "name": "Develop overall mission statement",
+    "level": 3,
+    "parentCode": "1.2",
+    "description": "Create the organization's mission statement articulating its purpose and core values."
+  },
+  {
+    "code": "1.2.1.1",
+    "name": "Define current business purpose and vision",
+    "level": 4,
+    "parentCode": "1.2.1",
+    "description": "Articulate the fundamental reason the organization exists and its desired future state."
+  },
+  {
+    "code": "1.2.1.2",
+    "name": "Define and communicate core organizational values",
+    "level": 4,
+    "parentCode": "1.2.1",
+    "description": "Establish guiding principles and ethical standards for the organization."
+  },
+  {
+    "code": "1.2.2",
+    "name": "Evaluate strategic options to achieve the objectives",
+    "level": 3,
+    "parentCode": "1.2",
+    "description": "Identify and assess alternative strategic approaches to achieve business objectives."
+  },
+  {
+    "code": "1.2.2.1",
+    "name": "Define strategic options",
+    "level": 4,
+    "parentCode": "1.2.2",
+    "description": "Generate a range of strategic alternatives based on internal and external analysis."
+  },
+  {
+    "code": "1.2.2.2",
+    "name": "Assess and evaluate strategic options",
+    "level": 4,
+    "parentCode": "1.2.2",
+    "description": "Analyze each strategic option for feasibility, risk, and alignment with objectives."
+  },
+  {
+    "code": "1.3",
+    "name": "Manage strategic initiatives",
+    "level": 2,
+    "parentCode": "1.0",
+    "description": "Plan, execute, and monitor strategic initiatives and transformation programs."
+  },
+  {
+    "code": "1.3.1",
+    "name": "Develop strategic initiatives",
+    "level": 3,
+    "parentCode": "1.3",
+    "description": "Identify and design specific initiatives that support the strategic plan."
+  },
+  {
+    "code": "1.3.1.1",
+    "name": "Identify strategic initiative opportunities",
+    "level": 4,
+    "parentCode": "1.3.1",
+    "description": "Discover and prioritize potential initiatives aligned with strategic objectives."
+  },
+  {
+    "code": "1.3.1.2",
+    "name": "Define resource requirements for initiatives",
+    "level": 4,
+    "parentCode": "1.3.1",
+    "description": "Determine the budget, personnel, and other resources needed for each initiative."
+  },
+  {
+    "code": "1.3.2",
+    "name": "Evaluate and select strategic initiatives",
+    "level": 3,
+    "parentCode": "1.3",
+    "description": "Assess potential initiatives and select those with the highest strategic value."
+  },
+  {
+    "code": "1.3.2.1",
+    "name": "Perform cost-benefit analysis of initiatives",
+    "level": 4,
+    "parentCode": "1.3.2",
+    "description": "Quantify the expected costs and benefits of each proposed initiative."
+  },
+  {
+    "code": "1.3.2.2",
+    "name": "Prioritize and approve strategic initiatives",
+    "level": 4,
+    "parentCode": "1.3.2",
+    "description": "Rank initiatives by strategic impact and formally approve selected programs."
+  },
+  {
+    "code": "2.0",
+    "name": "Develop and Manage Products and Services",
+    "level": 1,
+    "parentCode": null,
+    "description": "Design, develop, and manage the organization's portfolio of products and services."
+  },
+  {
+    "code": "2.1",
+    "name": "Manage product and service portfolio",
+    "level": 2,
+    "parentCode": "2.0",
+    "description": "Oversee the overall portfolio of products and services to align with strategy."
+  },
+  {
+    "code": "2.1.1",
+    "name": "Evaluate performance of existing products and services",
+    "level": 3,
+    "parentCode": "2.1",
+    "description": "Analyze the financial and market performance of current product and service offerings."
+  },
+  {
+    "code": "2.1.1.1",
+    "name": "Assess product profitability and contribution",
+    "level": 4,
+    "parentCode": "2.1.1",
+    "description": "Evaluate the revenue, margin, and overall profitability of each product or service."
+  },
+  {
+    "code": "2.1.1.2",
+    "name": "Assess product lifecycle position",
+    "level": 4,
+    "parentCode": "2.1.1",
+    "description": "Determine where each product sits in its lifecycle from introduction to decline."
+  },
+  {
+    "code": "2.1.2",
+    "name": "Define product and service development requirements",
+    "level": 3,
+    "parentCode": "2.1",
+    "description": "Establish requirements and specifications for new or enhanced products and services."
+  },
+  {
+    "code": "2.1.2.1",
+    "name": "Identify improvement opportunities for existing products",
+    "level": 4,
+    "parentCode": "2.1.2",
+    "description": "Discover enhancements and modifications that could improve current offerings."
+  },
+  {
+    "code": "2.1.2.2",
+    "name": "Define new product and service requirements",
+    "level": 4,
+    "parentCode": "2.1.2",
+    "description": "Specify functional and non-functional requirements for new offerings."
+  },
+  {
+    "code": "2.2",
+    "name": "Develop products and services",
+    "level": 2,
+    "parentCode": "2.0",
+    "description": "Design, prototype, test, and prepare new products and services for market launch."
+  },
+  {
+    "code": "2.2.1",
+    "name": "Design and prototype products and services",
+    "level": 3,
+    "parentCode": "2.2",
+    "description": "Create detailed designs and prototypes of new products and services."
+  },
+  {
+    "code": "2.2.1.1",
+    "name": "Create product design specifications",
+    "level": 4,
+    "parentCode": "2.2.1",
+    "description": "Develop detailed technical and functional design specifications."
+  },
+  {
+    "code": "2.2.1.2",
+    "name": "Build and test prototypes",
+    "level": 4,
+    "parentCode": "2.2.1",
+    "description": "Construct prototypes and conduct testing to validate design assumptions."
+  },
+  {
+    "code": "2.2.2",
+    "name": "Test market for new or revised products and services",
+    "level": 3,
+    "parentCode": "2.2",
+    "description": "Conduct market testing to validate demand and gather feedback before full launch."
+  },
+  {
+    "code": "2.2.2.1",
+    "name": "Conduct market trials and pilot programs",
+    "level": 4,
+    "parentCode": "2.2.2",
+    "description": "Execute controlled market trials to assess product-market fit."
+  },
+  {
+    "code": "2.2.2.2",
+    "name": "Analyze market test results",
+    "level": 4,
+    "parentCode": "2.2.2",
+    "description": "Evaluate pilot results, customer feedback, and market response data."
+  },
+  {
+    "code": "2.3",
+    "name": "Manage product and service lifecycle",
+    "level": 2,
+    "parentCode": "2.0",
+    "description": "Manage products and services throughout their lifecycle including retirement and sunset."
+  },
+  {
+    "code": "2.3.1",
+    "name": "Manage product and service revisions",
+    "level": 3,
+    "parentCode": "2.3",
+    "description": "Plan and implement updates, enhancements, and revisions to existing offerings."
+  },
+  {
+    "code": "2.3.1.1",
+    "name": "Plan and schedule product revisions",
+    "level": 4,
+    "parentCode": "2.3.1",
+    "description": "Develop timelines and roadmaps for product revision cycles."
+  },
+  {
+    "code": "2.3.1.2",
+    "name": "Implement product revision changes",
+    "level": 4,
+    "parentCode": "2.3.1",
+    "description": "Execute planned modifications and release updated product versions."
+  },
+  {
+    "code": "2.3.2",
+    "name": "Retire products and services",
+    "level": 3,
+    "parentCode": "2.3",
+    "description": "Plan and execute the orderly retirement and sunset of products and services."
+  },
+  {
+    "code": "2.3.2.1",
+    "name": "Develop product retirement plan",
+    "level": 4,
+    "parentCode": "2.3.2",
+    "description": "Create a transition plan for retiring products including customer migration."
+  },
+  {
+    "code": "2.3.2.2",
+    "name": "Execute product retirement and customer transition",
+    "level": 4,
+    "parentCode": "2.3.2",
+    "description": "Implement the retirement plan and support customers through the transition."
+  },
+  {
+    "code": "3.0",
+    "name": "Market and Sell Products and Services",
+    "level": 1,
+    "parentCode": null,
+    "description": "Understand markets, manage customer relationships, and sell products and services."
+  },
+  {
+    "code": "3.1",
+    "name": "Understand markets, customers, and capabilities",
+    "level": 2,
+    "parentCode": "3.0",
+    "description": "Analyze markets, understand customer segments, and assess organizational marketing capabilities."
+  },
+  {
+    "code": "3.1.1",
+    "name": "Perform customer and market intelligence analysis",
+    "level": 3,
+    "parentCode": "3.1",
+    "description": "Gather and analyze market intelligence and customer data to inform marketing strategy."
+  },
+  {
+    "code": "3.1.1.1",
+    "name": "Conduct customer research and analyze buying behavior",
+    "level": 4,
+    "parentCode": "3.1.1",
+    "description": "Study customer purchasing patterns, preferences, and decision-making processes."
+  },
+  {
+    "code": "3.1.1.2",
+    "name": "Analyze market size and growth opportunities",
+    "level": 4,
+    "parentCode": "3.1.1",
+    "description": "Quantify total addressable market and identify growth segments."
+  },
+  {
+    "code": "3.1.2",
+    "name": "Evaluate and prioritize market opportunities",
+    "level": 3,
+    "parentCode": "3.1",
+    "description": "Assess potential market opportunities and prioritize based on strategic fit and potential return."
+  },
+  {
+    "code": "3.1.2.1",
+    "name": "Assess market segment attractiveness",
+    "level": 4,
+    "parentCode": "3.1.2",
+    "description": "Evaluate each market segment for size, growth, profitability, and competitive intensity."
+  },
+  {
+    "code": "3.1.2.2",
+    "name": "Select target market segments",
+    "level": 4,
+    "parentCode": "3.1.2",
+    "description": "Choose the most attractive market segments for focused investment."
+  },
+  {
+    "code": "3.2",
+    "name": "Develop marketing strategy",
+    "level": 2,
+    "parentCode": "3.0",
+    "description": "Create the marketing strategy including brand management, pricing, and channel strategies."
+  },
+  {
+    "code": "3.2.1",
+    "name": "Define brand positioning and messaging",
+    "level": 3,
+    "parentCode": "3.2",
+    "description": "Establish brand identity, positioning, and core messaging frameworks."
+  },
+  {
+    "code": "3.2.1.1",
+    "name": "Develop brand strategy and identity",
+    "level": 4,
+    "parentCode": "3.2.1",
+    "description": "Create the brand architecture, visual identity, and brand promise."
+  },
+  {
+    "code": "3.2.1.2",
+    "name": "Create messaging and value propositions",
+    "level": 4,
+    "parentCode": "3.2.1",
+    "description": "Develop compelling value propositions and messaging for each target segment."
+  },
+  {
+    "code": "3.2.2",
+    "name": "Develop pricing strategy",
+    "level": 3,
+    "parentCode": "3.2",
+    "description": "Establish pricing models and strategies that balance competitiveness and profitability."
+  },
+  {
+    "code": "3.2.2.1",
+    "name": "Analyze competitive pricing and cost structure",
+    "level": 4,
+    "parentCode": "3.2.2",
+    "description": "Evaluate competitor pricing and internal cost structure to inform pricing decisions."
+  },
+  {
+    "code": "3.2.2.2",
+    "name": "Set pricing models and discount structures",
+    "level": 4,
+    "parentCode": "3.2.2",
+    "description": "Define pricing tiers, discount policies, and promotional pricing guidelines."
+  },
+  {
+    "code": "3.3",
+    "name": "Develop and manage marketing plans",
+    "level": 2,
+    "parentCode": "3.0",
+    "description": "Create, execute, and measure marketing campaigns and programs."
+  },
+  {
+    "code": "3.3.1",
+    "name": "Develop marketing campaigns",
+    "level": 3,
+    "parentCode": "3.3",
+    "description": "Design and plan integrated marketing campaigns across channels."
+  },
+  {
+    "code": "3.3.1.1",
+    "name": "Define campaign objectives and target audiences",
+    "level": 4,
+    "parentCode": "3.3.1",
+    "description": "Set campaign goals, KPIs, and identify target audience segments."
+  },
+  {
+    "code": "3.3.1.2",
+    "name": "Create campaign content and creative assets",
+    "level": 4,
+    "parentCode": "3.3.1",
+    "description": "Develop advertising copy, creative materials, and digital content for campaigns."
+  },
+  {
+    "code": "3.3.2",
+    "name": "Measure and evaluate marketing effectiveness",
+    "level": 3,
+    "parentCode": "3.3",
+    "description": "Track marketing performance metrics and assess return on marketing investment."
+  },
+  {
+    "code": "3.3.2.1",
+    "name": "Track campaign performance metrics",
+    "level": 4,
+    "parentCode": "3.3.2",
+    "description": "Monitor key metrics including reach, engagement, conversion, and ROI."
+  },
+  {
+    "code": "3.3.2.2",
+    "name": "Analyze marketing ROI and effectiveness",
+    "level": 4,
+    "parentCode": "3.3.2",
+    "description": "Calculate return on marketing investment and assess campaign effectiveness."
+  },
+  {
+    "code": "4.0",
+    "name": "Deliver Products and Services",
+    "level": 1,
+    "parentCode": null,
+    "description": "Plan, procure, produce, and deliver products and services to customers."
+  },
+  {
+    "code": "4.1",
+    "name": "Plan for and align supply chain resources",
+    "level": 2,
+    "parentCode": "4.0",
+    "description": "Develop supply chain strategies and align resources to meet demand."
+  },
+  {
+    "code": "4.1.1",
+    "name": "Develop production and materials strategies",
+    "level": 3,
+    "parentCode": "4.1",
+    "description": "Formulate strategies for production planning and materials management."
+  },
+  {
+    "code": "4.1.1.1",
+    "name": "Develop demand forecasts",
+    "level": 4,
+    "parentCode": "4.1.1",
+    "description": "Create statistical and judgment-based forecasts of customer demand."
+  },
+  {
+    "code": "4.1.1.2",
+    "name": "Develop production master schedule",
+    "level": 4,
+    "parentCode": "4.1.1",
+    "description": "Create the master production schedule aligning supply with demand."
+  },
+  {
+    "code": "4.1.2",
+    "name": "Manage demand for products and services",
+    "level": 3,
+    "parentCode": "4.1",
+    "description": "Forecast, shape, and manage customer demand to optimize supply chain performance."
+  },
+  {
+    "code": "4.1.2.1",
+    "name": "Develop demand consensus forecast",
+    "level": 4,
+    "parentCode": "4.1.2",
+    "description": "Collaborate across functions to develop an agreed-upon demand forecast."
+  },
+  {
+    "code": "4.1.2.2",
+    "name": "Balance demand with supply capabilities",
+    "level": 4,
+    "parentCode": "4.1.2",
+    "description": "Reconcile demand forecasts with available supply capacity."
+  },
+  {
+    "code": "4.2",
+    "name": "Procure materials and services",
+    "level": 2,
+    "parentCode": "4.0",
+    "description": "Source, purchase, and receive materials and services needed for operations."
+  },
+  {
+    "code": "4.2.1",
+    "name": "Develop sourcing strategies",
+    "level": 3,
+    "parentCode": "4.2",
+    "description": "Create strategies for sourcing materials and services from suppliers."
+  },
+  {
+    "code": "4.2.1.1",
+    "name": "Identify and evaluate potential suppliers",
+    "level": 4,
+    "parentCode": "4.2.1",
+    "description": "Research and assess potential suppliers based on capability, quality, and cost."
+  },
+  {
+    "code": "4.2.1.2",
+    "name": "Negotiate supplier contracts and terms",
+    "level": 4,
+    "parentCode": "4.2.1",
+    "description": "Negotiate pricing, delivery terms, quality requirements, and contractual obligations."
+  },
+  {
+    "code": "4.2.2",
+    "name": "Order materials and services",
+    "level": 3,
+    "parentCode": "4.2",
+    "description": "Process purchase orders and manage procurement transactions."
+  },
+  {
+    "code": "4.2.2.1",
+    "name": "Create and approve purchase requisitions",
+    "level": 4,
+    "parentCode": "4.2.2",
+    "description": "Generate and authorize purchase requisitions for needed materials and services."
+  },
+  {
+    "code": "4.2.2.2",
+    "name": "Issue purchase orders to suppliers",
+    "level": 4,
+    "parentCode": "4.2.2",
+    "description": "Generate and transmit purchase orders based on approved requisitions."
+  },
+  {
+    "code": "4.3",
+    "name": "Produce and deliver products",
+    "level": 2,
+    "parentCode": "4.0",
+    "description": "Execute production operations and deliver finished products to customers."
+  },
+  {
+    "code": "4.3.1",
+    "name": "Schedule and execute production",
+    "level": 3,
+    "parentCode": "4.3",
+    "description": "Plan detailed production schedules and execute manufacturing operations."
+  },
+  {
+    "code": "4.3.1.1",
+    "name": "Create detailed production schedules",
+    "level": 4,
+    "parentCode": "4.3.1",
+    "description": "Develop work-center-level production schedules and sequences."
+  },
+  {
+    "code": "4.3.1.2",
+    "name": "Execute production runs",
+    "level": 4,
+    "parentCode": "4.3.1",
+    "description": "Manufacture products according to production schedules and specifications."
+  },
+  {
+    "code": "4.3.2",
+    "name": "Manage logistics and warehousing",
+    "level": 3,
+    "parentCode": "4.3",
+    "description": "Manage inventory storage, order fulfillment, and distribution logistics."
+  },
+  {
+    "code": "4.3.2.1",
+    "name": "Manage warehouse operations and inventory",
+    "level": 4,
+    "parentCode": "4.3.2",
+    "description": "Oversee receiving, storage, picking, packing, and inventory management."
+  },
+  {
+    "code": "4.3.2.2",
+    "name": "Plan and manage outbound transportation",
+    "level": 4,
+    "parentCode": "4.3.2",
+    "description": "Coordinate shipping, carrier selection, and transportation logistics."
+  },
+  {
+    "code": "5.0",
+    "name": "Manage Customer Service",
+    "level": 1,
+    "parentCode": null,
+    "description": "Plan and manage customer service operations, handle inquiries, and ensure customer satisfaction."
+  },
+  {
+    "code": "5.1",
+    "name": "Develop customer care and service strategy",
+    "level": 2,
+    "parentCode": "5.0",
+    "description": "Create the strategy for customer service operations, channels, and standards."
+  },
+  {
+    "code": "5.1.1",
+    "name": "Define customer service requirements and standards",
+    "level": 3,
+    "parentCode": "5.1",
+    "description": "Establish service level targets, quality standards, and customer experience goals."
+  },
+  {
+    "code": "5.1.1.1",
+    "name": "Define service level agreements and standards",
+    "level": 4,
+    "parentCode": "5.1.1",
+    "description": "Establish response times, resolution targets, and quality benchmarks."
+  },
+  {
+    "code": "5.1.1.2",
+    "name": "Identify customer service channel requirements",
+    "level": 4,
+    "parentCode": "5.1.1",
+    "description": "Determine the optimal mix of service channels (phone, email, chat, self-service)."
+  },
+  {
+    "code": "5.1.2",
+    "name": "Develop customer engagement approach",
+    "level": 3,
+    "parentCode": "5.1",
+    "description": "Design the customer engagement model and proactive communication approach."
+  },
+  {
+    "code": "5.1.2.1",
+    "name": "Design customer engagement programs",
+    "level": 4,
+    "parentCode": "5.1.2",
+    "description": "Create proactive customer outreach, loyalty, and retention programs."
+  },
+  {
+    "code": "5.1.2.2",
+    "name": "Define customer feedback collection methods",
+    "level": 4,
+    "parentCode": "5.1.2",
+    "description": "Establish mechanisms for capturing customer feedback and satisfaction data."
+  },
+  {
+    "code": "5.2",
+    "name": "Plan and manage customer service operations",
+    "level": 2,
+    "parentCode": "5.0",
+    "description": "Manage day-to-day customer service operations including workforce and quality management."
+  },
+  {
+    "code": "5.2.1",
+    "name": "Plan and manage customer service workforce",
+    "level": 3,
+    "parentCode": "5.2",
+    "description": "Forecast demand, schedule agents, and manage the customer service workforce."
+  },
+  {
+    "code": "5.2.1.1",
+    "name": "Forecast service demand and schedule staff",
+    "level": 4,
+    "parentCode": "5.2.1",
+    "description": "Predict call volumes and schedule adequate staffing levels."
+  },
+  {
+    "code": "5.2.1.2",
+    "name": "Train and develop customer service representatives",
+    "level": 4,
+    "parentCode": "5.2.1",
+    "description": "Provide training on products, systems, and customer service skills."
+  },
+  {
+    "code": "5.2.2",
+    "name": "Manage customer service requests and inquiries",
+    "level": 3,
+    "parentCode": "5.2",
+    "description": "Handle customer inquiries, requests, and issues through resolution."
+  },
+  {
+    "code": "5.2.2.1",
+    "name": "Receive and log customer inquiries",
+    "level": 4,
+    "parentCode": "5.2.2",
+    "description": "Capture, categorize, and document incoming customer contacts."
+  },
+  {
+    "code": "5.2.2.2",
+    "name": "Resolve customer issues and requests",
+    "level": 4,
+    "parentCode": "5.2.2",
+    "description": "Investigate and resolve customer problems, complaints, and requests."
+  },
+  {
+    "code": "5.3",
+    "name": "Measure and evaluate customer service operations",
+    "level": 2,
+    "parentCode": "5.0",
+    "description": "Track customer service metrics and drive continuous improvement."
+  },
+  {
+    "code": "5.3.1",
+    "name": "Measure customer satisfaction",
+    "level": 3,
+    "parentCode": "5.3",
+    "description": "Collect and analyze customer satisfaction data and feedback."
+  },
+  {
+    "code": "5.3.1.1",
+    "name": "Conduct customer satisfaction surveys",
+    "level": 4,
+    "parentCode": "5.3.1",
+    "description": "Administer satisfaction surveys and net promoter score assessments."
+  },
+  {
+    "code": "5.3.1.2",
+    "name": "Analyze customer feedback and identify trends",
+    "level": 4,
+    "parentCode": "5.3.1",
+    "description": "Review feedback patterns and identify systemic improvement opportunities."
+  },
+  {
+    "code": "5.3.2",
+    "name": "Evaluate and benchmark service performance",
+    "level": 3,
+    "parentCode": "5.3",
+    "description": "Assess service performance against targets and industry benchmarks."
+  },
+  {
+    "code": "5.3.2.1",
+    "name": "Monitor service level achievement",
+    "level": 4,
+    "parentCode": "5.3.2",
+    "description": "Track performance against defined SLAs and quality targets."
+  },
+  {
+    "code": "5.3.2.2",
+    "name": "Benchmark against industry best practices",
+    "level": 4,
+    "parentCode": "5.3.2",
+    "description": "Compare service operations against industry standards and leading practices."
+  },
+  {
+    "code": "6.0",
+    "name": "Develop and Manage Human Capital",
+    "level": 1,
+    "parentCode": null,
+    "description": "Attract, develop, retain, and manage the organization's workforce."
+  },
+  {
+    "code": "6.1",
+    "name": "Develop and manage human resources planning, policies, and strategies",
+    "level": 2,
+    "parentCode": "6.0",
+    "description": "Create workforce strategies, HR policies, and organizational design plans."
+  },
+  {
+    "code": "6.1.1",
+    "name": "Develop human resources strategy",
+    "level": 3,
+    "parentCode": "6.1",
+    "description": "Formulate the overarching human capital strategy aligned with business objectives."
+  },
+  {
+    "code": "6.1.1.1",
+    "name": "Identify workforce requirements and strategic needs",
+    "level": 4,
+    "parentCode": "6.1.1",
+    "description": "Analyze current and future workforce needs based on business strategy."
+  },
+  {
+    "code": "6.1.1.2",
+    "name": "Define HR policies and guidelines",
+    "level": 4,
+    "parentCode": "6.1.1",
+    "description": "Develop employment policies, standards, and governance frameworks."
+  },
+  {
+    "code": "6.1.2",
+    "name": "Plan and manage workforce",
+    "level": 3,
+    "parentCode": "6.1",
+    "description": "Develop workforce plans, succession plans, and talent management strategies."
+  },
+  {
+    "code": "6.1.2.1",
+    "name": "Conduct workforce gap analysis",
+    "level": 4,
+    "parentCode": "6.1.2",
+    "description": "Compare current workforce capabilities against future requirements."
+  },
+  {
+    "code": "6.1.2.2",
+    "name": "Develop succession plans for key roles",
+    "level": 4,
+    "parentCode": "6.1.2",
+    "description": "Identify successors and development plans for critical leadership positions."
+  },
+  {
+    "code": "6.2",
+    "name": "Recruit, source, and select employees",
+    "level": 2,
+    "parentCode": "6.0",
+    "description": "Attract, recruit, and hire qualified talent to fill organizational needs."
+  },
+  {
+    "code": "6.2.1",
+    "name": "Create and manage requisitions",
+    "level": 3,
+    "parentCode": "6.2",
+    "description": "Develop job descriptions, open positions, and manage hiring requisitions."
+  },
+  {
+    "code": "6.2.1.1",
+    "name": "Develop job descriptions and candidate profiles",
+    "level": 4,
+    "parentCode": "6.2.1",
+    "description": "Create detailed job descriptions and ideal candidate profiles."
+  },
+  {
+    "code": "6.2.1.2",
+    "name": "Post positions and manage job advertisements",
+    "level": 4,
+    "parentCode": "6.2.1",
+    "description": "Publish job postings across recruitment channels and job boards."
+  },
+  {
+    "code": "6.2.2",
+    "name": "Screen and select candidates",
+    "level": 3,
+    "parentCode": "6.2",
+    "description": "Review applications, conduct interviews, and select candidates for hire."
+  },
+  {
+    "code": "6.2.2.1",
+    "name": "Screen resumes and applications",
+    "level": 4,
+    "parentCode": "6.2.2",
+    "description": "Review and filter candidate applications against position requirements."
+  },
+  {
+    "code": "6.2.2.2",
+    "name": "Conduct interviews and assessments",
+    "level": 4,
+    "parentCode": "6.2.2",
+    "description": "Perform structured interviews, skills assessments, and reference checks."
+  },
+  {
+    "code": "6.3",
+    "name": "Develop and counsel employees",
+    "level": 2,
+    "parentCode": "6.0",
+    "description": "Manage employee development, training, performance, and career growth."
+  },
+  {
+    "code": "6.3.1",
+    "name": "Manage employee orientation and deployment",
+    "level": 3,
+    "parentCode": "6.3",
+    "description": "Onboard new employees and deploy them to their assigned roles."
+  },
+  {
+    "code": "6.3.1.1",
+    "name": "Conduct new employee orientation programs",
+    "level": 4,
+    "parentCode": "6.3.1",
+    "description": "Introduce new employees to the organization, culture, policies, and systems."
+  },
+  {
+    "code": "6.3.1.2",
+    "name": "Manage employee role assignments and transitions",
+    "level": 4,
+    "parentCode": "6.3.1",
+    "description": "Facilitate employee placement, transfers, and role transitions."
+  },
+  {
+    "code": "6.3.2",
+    "name": "Manage employee performance",
+    "level": 3,
+    "parentCode": "6.3",
+    "description": "Conduct performance reviews, provide feedback, and manage employee development."
+  },
+  {
+    "code": "6.3.2.1",
+    "name": "Define performance goals and objectives",
+    "level": 4,
+    "parentCode": "6.3.2",
+    "description": "Set individual and team performance goals aligned with organizational objectives."
+  },
+  {
+    "code": "6.3.2.2",
+    "name": "Conduct performance evaluations and reviews",
+    "level": 4,
+    "parentCode": "6.3.2",
+    "description": "Perform periodic performance assessments and provide developmental feedback."
+  },
+  {
+    "code": "6.4",
+    "name": "Reward and retain employees",
+    "level": 2,
+    "parentCode": "6.0",
+    "description": "Manage compensation, benefits, and retention programs to attract and retain talent."
+  },
+  {
+    "code": "6.4.1",
+    "name": "Manage compensation and benefits",
+    "level": 3,
+    "parentCode": "6.4",
+    "description": "Design and administer compensation structures, benefits programs, and incentives."
+  },
+  {
+    "code": "6.4.1.1",
+    "name": "Administer compensation programs",
+    "level": 4,
+    "parentCode": "6.4.1",
+    "description": "Manage salary structures, pay scales, and compensation adjustments."
+  },
+  {
+    "code": "6.4.1.2",
+    "name": "Manage employee benefits programs",
+    "level": 4,
+    "parentCode": "6.4.1",
+    "description": "Administer health, retirement, and other employee benefit programs."
+  },
+  {
+    "code": "6.4.2",
+    "name": "Manage employee retention",
+    "level": 3,
+    "parentCode": "6.4",
+    "description": "Develop and implement strategies to retain key talent and reduce turnover."
+  },
+  {
+    "code": "6.4.2.1",
+    "name": "Measure and analyze employee engagement",
+    "level": 4,
+    "parentCode": "6.4.2",
+    "description": "Conduct engagement surveys and analyze factors affecting employee retention."
+  },
+  {
+    "code": "6.4.2.2",
+    "name": "Develop and implement retention strategies",
+    "level": 4,
+    "parentCode": "6.4.2",
+    "description": "Create targeted initiatives to retain high-performing and critical employees."
+  },
+  {
+    "code": "7.0",
+    "name": "Manage Information Technology",
+    "level": 1,
+    "parentCode": null,
+    "description": "Manage the enterprise IT function including strategy, infrastructure, applications, and security."
+  },
+  {
+    "code": "7.1",
+    "name": "Manage the business of information technology",
+    "level": 2,
+    "parentCode": "7.0",
+    "description": "Develop IT strategy, manage the IT portfolio, and govern technology investments."
+  },
+  {
+    "code": "7.1.1",
+    "name": "Develop the enterprise IT strategy",
+    "level": 3,
+    "parentCode": "7.1",
+    "description": "Create the technology strategy aligned with business strategy and digital transformation goals."
+  },
+  {
+    "code": "7.1.1.1",
+    "name": "Align IT strategy with business objectives",
+    "level": 4,
+    "parentCode": "7.1.1",
+    "description": "Ensure technology investments and priorities support business goals."
+  },
+  {
+    "code": "7.1.1.2",
+    "name": "Define IT architecture and technology roadmap",
+    "level": 4,
+    "parentCode": "7.1.1",
+    "description": "Develop the enterprise architecture and multi-year technology plan."
+  },
+  {
+    "code": "7.1.2",
+    "name": "Manage the IT portfolio",
+    "level": 3,
+    "parentCode": "7.1",
+    "description": "Govern the portfolio of IT projects, applications, and technology investments."
+  },
+  {
+    "code": "7.1.2.1",
+    "name": "Prioritize and manage IT project portfolio",
+    "level": 4,
+    "parentCode": "7.1.2",
+    "description": "Evaluate, prioritize, and track IT projects based on business value and risk."
+  },
+  {
+    "code": "7.1.2.2",
+    "name": "Manage IT budgets and spending",
+    "level": 4,
+    "parentCode": "7.1.2",
+    "description": "Plan and control IT operating and capital expenditures."
+  },
+  {
+    "code": "7.3",
+    "name": "Manage IT infrastructure and operations",
+    "level": 2,
+    "parentCode": "7.0",
+    "description": "Manage IT infrastructure, platforms, cloud services, and day-to-day operations."
+  },
+  {
+    "code": "7.3.1",
+    "name": "Manage IT infrastructure",
+    "level": 3,
+    "parentCode": "7.3",
+    "description": "Maintain and operate servers, networks, storage, and cloud infrastructure."
+  },
+  {
+    "code": "7.3.1.1",
+    "name": "Manage data center and cloud infrastructure",
+    "level": 4,
+    "parentCode": "7.3.1",
+    "description": "Operate and maintain physical and virtual infrastructure environments."
+  },
+  {
+    "code": "7.3.1.2",
+    "name": "Manage network and communications infrastructure",
+    "level": 4,
+    "parentCode": "7.3.1",
+    "description": "Maintain network connectivity, bandwidth, and communications systems."
+  },
+  {
+    "code": "7.3.2",
+    "name": "Manage IT security and cybersecurity",
+    "level": 3,
+    "parentCode": "7.3",
+    "description": "Protect IT systems and data from cyber threats and security breaches."
+  },
+  {
+    "code": "7.3.2.1",
+    "name": "Develop and enforce security policies",
+    "level": 4,
+    "parentCode": "7.3.2",
+    "description": "Create IT security policies, standards, and compliance requirements."
+  },
+  {
+    "code": "7.3.2.2",
+    "name": "Monitor and respond to security threats",
+    "level": 4,
+    "parentCode": "7.3.2",
+    "description": "Detect, analyze, and respond to cybersecurity incidents and threats."
+  },
+  {
+    "code": "7.4",
+    "name": "Develop and maintain IT applications",
+    "level": 2,
+    "parentCode": "7.0",
+    "description": "Design, develop, test, deploy, and maintain business applications."
+  },
+  {
+    "code": "7.4.1",
+    "name": "Develop application solutions",
+    "level": 3,
+    "parentCode": "7.4",
+    "description": "Design, develop, and deploy custom and configured application solutions."
+  },
+  {
+    "code": "7.4.1.1",
+    "name": "Gather and analyze application requirements",
+    "level": 4,
+    "parentCode": "7.4.1",
+    "description": "Elicit and document business and technical requirements for applications."
+  },
+  {
+    "code": "7.4.1.2",
+    "name": "Design, develop, and test applications",
+    "level": 4,
+    "parentCode": "7.4.1",
+    "description": "Build, unit test, and integration test application code and configurations."
+  },
+  {
+    "code": "7.4.2",
+    "name": "Maintain and support applications",
+    "level": 3,
+    "parentCode": "7.4",
+    "description": "Provide ongoing maintenance, patches, and support for business applications."
+  },
+  {
+    "code": "7.4.2.1",
+    "name": "Manage application patches and updates",
+    "level": 4,
+    "parentCode": "7.4.2",
+    "description": "Apply patches, updates, and minor enhancements to existing applications."
+  },
+  {
+    "code": "7.4.2.2",
+    "name": "Provide application support and troubleshooting",
+    "level": 4,
+    "parentCode": "7.4.2",
+    "description": "Diagnose and resolve application issues and support end users."
+  },
+  {
+    "code": "8.0",
+    "name": "Manage Financial Resources",
+    "level": 1,
+    "parentCode": null,
+    "description": "Plan, manage, account for, and report on the organization's financial resources."
+  },
+  {
+    "code": "8.1",
+    "name": "Perform planning and management accounting",
+    "level": 2,
+    "parentCode": "8.0",
+    "description": "Develop budgets, perform financial planning, and manage cost accounting."
+  },
+  {
+    "code": "8.1.1",
+    "name": "Perform planning and budgeting",
+    "level": 3,
+    "parentCode": "8.1",
+    "description": "Develop financial plans, budgets, and forecasts for the organization."
+  },
+  {
+    "code": "8.1.1.1",
+    "name": "Develop annual operating budgets",
+    "level": 4,
+    "parentCode": "8.1.1",
+    "description": "Create detailed annual budgets by business unit, department, and cost center."
+  },
+  {
+    "code": "8.1.1.2",
+    "name": "Develop capital expenditure budgets",
+    "level": 4,
+    "parentCode": "8.1.1",
+    "description": "Plan and budget for capital investments and major expenditures."
+  },
+  {
+    "code": "8.1.2",
+    "name": "Perform cost accounting and management",
+    "level": 3,
+    "parentCode": "8.1",
+    "description": "Track, allocate, and analyze costs to support management decision-making."
+  },
+  {
+    "code": "8.1.2.1",
+    "name": "Perform cost allocation and analysis",
+    "level": 4,
+    "parentCode": "8.1.2",
+    "description": "Allocate overhead and indirect costs to products, services, and departments."
+  },
+  {
+    "code": "8.1.2.2",
+    "name": "Analyze cost variances and profitability",
+    "level": 4,
+    "parentCode": "8.1.2",
+    "description": "Compare actual costs to budgets and analyze profitability by segment."
+  },
+  {
+    "code": "8.2",
+    "name": "Perform revenue accounting",
+    "level": 2,
+    "parentCode": "8.0",
+    "description": "Manage accounts receivable, process customer invoices, and collect revenue."
+  },
+  {
+    "code": "8.2.1",
+    "name": "Process customer invoices",
+    "level": 3,
+    "parentCode": "8.2",
+    "description": "Generate, issue, and manage customer invoices and billing."
+  },
+  {
+    "code": "8.2.1.1",
+    "name": "Generate and distribute customer invoices",
+    "level": 4,
+    "parentCode": "8.2.1",
+    "description": "Create and send invoices to customers based on orders and contracts."
+  },
+  {
+    "code": "8.2.1.2",
+    "name": "Process invoice adjustments and credits",
+    "level": 4,
+    "parentCode": "8.2.1",
+    "description": "Handle invoice disputes, adjustments, and credit memo processing."
+  },
+  {
+    "code": "8.2.2",
+    "name": "Manage accounts receivable",
+    "level": 3,
+    "parentCode": "8.2",
+    "description": "Track customer payments, manage collections, and maintain receivable balances."
+  },
+  {
+    "code": "8.2.2.1",
+    "name": "Apply customer payments and receipts",
+    "level": 4,
+    "parentCode": "8.2.2",
+    "description": "Record and apply incoming customer payments to outstanding invoices."
+  },
+  {
+    "code": "8.2.2.2",
+    "name": "Manage collections and overdue accounts",
+    "level": 4,
+    "parentCode": "8.2.2",
+    "description": "Pursue collection of overdue accounts and manage aging receivables."
+  },
+  {
+    "code": "8.3",
+    "name": "Perform general accounting and reporting",
+    "level": 2,
+    "parentCode": "8.0",
+    "description": "Maintain the general ledger, perform period-end close, and produce financial reports."
+  },
+  {
+    "code": "8.3.1",
+    "name": "Manage the general ledger",
+    "level": 3,
+    "parentCode": "8.3",
+    "description": "Maintain the chart of accounts, process journal entries, and manage the general ledger."
+  },
+  {
+    "code": "8.3.1.1",
+    "name": "Maintain chart of accounts",
+    "level": 4,
+    "parentCode": "8.3.1",
+    "description": "Manage the structure and maintenance of the general ledger chart of accounts."
+  },
+  {
+    "code": "8.3.1.2",
+    "name": "Process journal entries and adjustments",
+    "level": 4,
+    "parentCode": "8.3.1",
+    "description": "Record standard, recurring, and adjusting journal entries."
+  },
+  {
+    "code": "8.3.2",
+    "name": "Prepare financial statements and reports",
+    "level": 3,
+    "parentCode": "8.3",
+    "description": "Produce internal and external financial reports and regulatory filings."
+  },
+  {
+    "code": "8.3.2.1",
+    "name": "Prepare income statements and balance sheets",
+    "level": 4,
+    "parentCode": "8.3.2",
+    "description": "Generate standard financial statements including P&L and balance sheet."
+  },
+  {
+    "code": "8.3.2.2",
+    "name": "Prepare cash flow statements",
+    "level": 4,
+    "parentCode": "8.3.2",
+    "description": "Generate cash flow statements and analyze cash position."
+  },
+  {
+    "code": "9.0",
+    "name": "Acquire, Construct, and Manage Assets",
+    "level": 1,
+    "parentCode": null,
+    "description": "Plan, acquire, maintain, and dispose of the organization's physical and intangible assets."
+  },
+  {
+    "code": "9.1",
+    "name": "Design and construct productive assets",
+    "level": 2,
+    "parentCode": "9.0",
+    "description": "Plan, design, and construct facilities, infrastructure, and capital assets."
+  },
+  {
+    "code": "9.1.1",
+    "name": "Develop property and facility strategy",
+    "level": 3,
+    "parentCode": "9.1",
+    "description": "Plan the portfolio of properties and facilities to support business operations."
+  },
+  {
+    "code": "9.1.1.1",
+    "name": "Assess facility needs and develop plans",
+    "level": 4,
+    "parentCode": "9.1.1",
+    "description": "Evaluate current and future facility requirements and create facility master plans."
+  },
+  {
+    "code": "9.1.1.2",
+    "name": "Plan and budget capital construction projects",
+    "level": 4,
+    "parentCode": "9.1.1",
+    "description": "Develop project plans and budgets for new construction and renovations."
+  },
+  {
+    "code": "9.1.2",
+    "name": "Manage construction and renovation projects",
+    "level": 3,
+    "parentCode": "9.1",
+    "description": "Oversee construction, renovation, and capital improvement projects."
+  },
+  {
+    "code": "9.1.2.1",
+    "name": "Manage construction project execution",
+    "level": 4,
+    "parentCode": "9.1.2",
+    "description": "Oversee construction activities, contractors, timelines, and budgets."
+  },
+  {
+    "code": "9.1.2.2",
+    "name": "Commission and hand over completed facilities",
+    "level": 4,
+    "parentCode": "9.1.2",
+    "description": "Test, commission, and transition completed facilities into operations."
+  },
+  {
+    "code": "9.2",
+    "name": "Manage maintenance and repairs",
+    "level": 2,
+    "parentCode": "9.0",
+    "description": "Plan and execute preventive and corrective maintenance for physical assets."
+  },
+  {
+    "code": "9.2.1",
+    "name": "Develop asset maintenance strategies",
+    "level": 3,
+    "parentCode": "9.2",
+    "description": "Create maintenance strategies including preventive, predictive, and corrective approaches."
+  },
+  {
+    "code": "9.2.1.1",
+    "name": "Develop preventive maintenance schedules",
+    "level": 4,
+    "parentCode": "9.2.1",
+    "description": "Create scheduled maintenance plans to prevent equipment failures."
+  },
+  {
+    "code": "9.2.1.2",
+    "name": "Implement predictive maintenance programs",
+    "level": 4,
+    "parentCode": "9.2.1",
+    "description": "Deploy condition-monitoring and predictive analytics for proactive maintenance."
+  },
+  {
+    "code": "9.2.2",
+    "name": "Execute maintenance and repair work",
+    "level": 3,
+    "parentCode": "9.2",
+    "description": "Perform scheduled and unscheduled maintenance and repair activities."
+  },
+  {
+    "code": "9.2.2.1",
+    "name": "Schedule and execute work orders",
+    "level": 4,
+    "parentCode": "9.2.2",
+    "description": "Plan, schedule, and complete maintenance work orders."
+  },
+  {
+    "code": "9.2.2.2",
+    "name": "Manage spare parts and maintenance inventory",
+    "level": 4,
+    "parentCode": "9.2.2",
+    "description": "Maintain inventory of spare parts and materials for maintenance activities."
+  },
+  {
+    "code": "9.3",
+    "name": "Manage asset lifecycle",
+    "level": 2,
+    "parentCode": "9.0",
+    "description": "Track assets through their lifecycle including acquisition, depreciation, and disposal."
+  },
+  {
+    "code": "9.3.1",
+    "name": "Manage asset records and tracking",
+    "level": 3,
+    "parentCode": "9.3",
+    "description": "Maintain accurate records of all organizational assets."
+  },
+  {
+    "code": "9.3.1.1",
+    "name": "Maintain fixed asset register",
+    "level": 4,
+    "parentCode": "9.3.1",
+    "description": "Record and track all fixed assets including location, condition, and value."
+  },
+  {
+    "code": "9.3.1.2",
+    "name": "Calculate and record asset depreciation",
+    "level": 4,
+    "parentCode": "9.3.1",
+    "description": "Compute depreciation using appropriate methods and record in financial systems."
+  },
+  {
+    "code": "9.3.2",
+    "name": "Manage asset disposal and retirement",
+    "level": 3,
+    "parentCode": "9.3",
+    "description": "Plan and execute the disposal or retirement of assets that are no longer needed."
+  },
+  {
+    "code": "9.3.2.1",
+    "name": "Evaluate assets for disposal or retirement",
+    "level": 4,
+    "parentCode": "9.3.2",
+    "description": "Assess which assets should be retired, sold, or disposed of."
+  },
+  {
+    "code": "9.3.2.2",
+    "name": "Execute asset disposal and record transactions",
+    "level": 4,
+    "parentCode": "9.3.2",
+    "description": "Dispose of assets and record the financial impact of disposal."
+  },
+  {
+    "code": "10.0",
+    "name": "Manage Enterprise Risk, Compliance, Remediation, and Resiliency",
+    "level": 1,
+    "parentCode": null,
+    "description": "Identify, assess, and manage enterprise risks, ensure regulatory compliance, and build organizational resiliency."
+  },
+  {
+    "code": "10.1",
+    "name": "Manage enterprise risk",
+    "level": 2,
+    "parentCode": "10.0",
+    "description": "Establish the enterprise risk management framework and manage organizational risks."
+  },
+  {
+    "code": "10.1.1",
+    "name": "Establish enterprise risk management framework",
+    "level": 3,
+    "parentCode": "10.1",
+    "description": "Design and implement the risk management framework, policies, and governance structure."
+  },
+  {
+    "code": "10.1.1.1",
+    "name": "Define risk management policies and appetite",
+    "level": 4,
+    "parentCode": "10.1.1",
+    "description": "Establish risk management policies, risk appetite, and tolerance thresholds."
+  },
+  {
+    "code": "10.1.1.2",
+    "name": "Establish risk governance structure",
+    "level": 4,
+    "parentCode": "10.1.1",
+    "description": "Define risk management roles, responsibilities, and oversight committees."
+  },
+  {
+    "code": "10.1.2",
+    "name": "Identify, assess, and manage risks",
+    "level": 3,
+    "parentCode": "10.1",
+    "description": "Identify potential risks, assess their likelihood and impact, and develop mitigation plans."
+  },
+  {
+    "code": "10.1.2.1",
+    "name": "Identify and categorize enterprise risks",
+    "level": 4,
+    "parentCode": "10.1.2",
+    "description": "Discover and classify risks across strategic, operational, financial, and compliance domains."
+  },
+  {
+    "code": "10.1.2.2",
+    "name": "Assess risk likelihood and impact",
+    "level": 4,
+    "parentCode": "10.1.2",
+    "description": "Evaluate the probability and potential impact of identified risks."
+  },
+  {
+    "code": "10.2",
+    "name": "Manage compliance",
+    "level": 2,
+    "parentCode": "10.0",
+    "description": "Ensure organizational compliance with laws, regulations, and internal policies."
+  },
+  {
+    "code": "10.2.1",
+    "name": "Manage regulatory compliance",
+    "level": 3,
+    "parentCode": "10.2",
+    "description": "Monitor regulatory requirements and ensure organizational compliance."
+  },
+  {
+    "code": "10.2.1.1",
+    "name": "Monitor regulatory changes and requirements",
+    "level": 4,
+    "parentCode": "10.2.1",
+    "description": "Track changes in laws, regulations, and industry standards affecting the organization."
+  },
+  {
+    "code": "10.2.1.2",
+    "name": "Implement compliance programs and controls",
+    "level": 4,
+    "parentCode": "10.2.1",
+    "description": "Establish and maintain compliance programs, controls, and monitoring processes."
+  },
+  {
+    "code": "10.2.2",
+    "name": "Manage internal policies and ethics",
+    "level": 3,
+    "parentCode": "10.2",
+    "description": "Develop and enforce internal policies, codes of conduct, and ethical standards."
+  },
+  {
+    "code": "10.2.2.1",
+    "name": "Develop and maintain organizational policies",
+    "level": 4,
+    "parentCode": "10.2.2",
+    "description": "Create, review, and update organizational policies and procedures."
+  },
+  {
+    "code": "10.2.2.2",
+    "name": "Manage ethics and code of conduct programs",
+    "level": 4,
+    "parentCode": "10.2.2",
+    "description": "Administer ethics programs, whistleblower mechanisms, and conduct investigations."
+  },
+  {
+    "code": "10.3",
+    "name": "Manage business resiliency",
+    "level": 2,
+    "parentCode": "10.0",
+    "description": "Develop and maintain business continuity and disaster recovery capabilities."
+  },
+  {
+    "code": "10.3.1",
+    "name": "Develop business continuity plans",
+    "level": 3,
+    "parentCode": "10.3",
+    "description": "Create plans to ensure critical business functions continue during disruptions."
+  },
+  {
+    "code": "10.3.1.1",
+    "name": "Conduct business impact analysis",
+    "level": 4,
+    "parentCode": "10.3.1",
+    "description": "Identify critical business processes and assess the impact of disruptions."
+  },
+  {
+    "code": "10.3.1.2",
+    "name": "Develop and maintain continuity plans",
+    "level": 4,
+    "parentCode": "10.3.1",
+    "description": "Create detailed continuity plans including recovery procedures and resource requirements."
+  },
+  {
+    "code": "10.3.2",
+    "name": "Test and maintain resilience capabilities",
+    "level": 3,
+    "parentCode": "10.3",
+    "description": "Test business continuity and disaster recovery plans and maintain readiness."
+  },
+  {
+    "code": "10.3.2.1",
+    "name": "Conduct business continuity tests and exercises",
+    "level": 4,
+    "parentCode": "10.3.2",
+    "description": "Execute tabletop exercises and full-scale tests of continuity plans."
+  },
+  {
+    "code": "10.3.2.2",
+    "name": "Update plans based on test results and changes",
+    "level": 4,
+    "parentCode": "10.3.2",
+    "description": "Revise plans to address gaps identified during testing and organizational changes."
+  },
+  {
+    "code": "11.0",
+    "name": "Manage External Relationships",
+    "level": 1,
+    "parentCode": null,
+    "description": "Build and manage relationships with external stakeholders including investors, government, and the community."
+  },
+  {
+    "code": "11.1",
+    "name": "Build investor relationships",
+    "level": 2,
+    "parentCode": "11.0",
+    "description": "Manage relationships with investors, analysts, and the financial community."
+  },
+  {
+    "code": "11.1.1",
+    "name": "Manage investor and analyst communications",
+    "level": 3,
+    "parentCode": "11.1",
+    "description": "Plan and execute communications with investors, analysts, and shareholders."
+  },
+  {
+    "code": "11.1.1.1",
+    "name": "Prepare and present investor communications",
+    "level": 4,
+    "parentCode": "11.1.1",
+    "description": "Develop earnings reports, investor presentations, and annual reports."
+  },
+  {
+    "code": "11.1.1.2",
+    "name": "Manage shareholder meetings and inquiries",
+    "level": 4,
+    "parentCode": "11.1.1",
+    "description": "Plan annual shareholder meetings and respond to investor inquiries."
+  },
+  {
+    "code": "11.2",
+    "name": "Manage government and regulatory relationships",
+    "level": 2,
+    "parentCode": "11.0",
+    "description": "Manage relationships with government bodies, regulators, and legislative authorities."
+  },
+  {
+    "code": "11.2.1",
+    "name": "Manage government relations and lobbying",
+    "level": 3,
+    "parentCode": "11.2",
+    "description": "Engage with government officials and manage the organization's policy positions."
+  },
+  {
+    "code": "11.2.1.1",
+    "name": "Monitor legislative and regulatory developments",
+    "level": 4,
+    "parentCode": "11.2.1",
+    "description": "Track proposed legislation and regulatory changes affecting the organization."
+  },
+  {
+    "code": "11.2.1.2",
+    "name": "Engage with regulators and policymakers",
+    "level": 4,
+    "parentCode": "11.2.1",
+    "description": "Participate in regulatory proceedings and provide input on policy matters."
+  },
+  {
+    "code": "11.3",
+    "name": "Manage public and community relations",
+    "level": 2,
+    "parentCode": "11.0",
+    "description": "Manage the organization's public image, media relations, and community engagement."
+  },
+  {
+    "code": "11.3.1",
+    "name": "Manage public relations and communications",
+    "level": 3,
+    "parentCode": "11.3",
+    "description": "Handle media relations, corporate communications, and reputation management."
+  },
+  {
+    "code": "11.3.1.1",
+    "name": "Manage media relations and press communications",
+    "level": 4,
+    "parentCode": "11.3.1",
+    "description": "Handle press inquiries, issue press releases, and manage media interactions."
+  },
+  {
+    "code": "11.3.1.2",
+    "name": "Manage crisis communications",
+    "level": 4,
+    "parentCode": "11.3.1",
+    "description": "Develop and execute communication plans during organizational crises."
+  },
+  {
+    "code": "11.3.2",
+    "name": "Manage community and social responsibility",
+    "level": 3,
+    "parentCode": "11.3",
+    "description": "Engage with local communities and manage corporate social responsibility programs."
+  },
+  {
+    "code": "11.3.2.1",
+    "name": "Manage community engagement programs",
+    "level": 4,
+    "parentCode": "11.3.2",
+    "description": "Develop and manage community outreach, volunteering, and partnership programs."
+  },
+  {
+    "code": "11.3.2.2",
+    "name": "Manage corporate social responsibility initiatives",
+    "level": 4,
+    "parentCode": "11.3.2",
+    "description": "Oversee CSR programs including environmental sustainability and social impact."
+  },
+  {
+    "code": "12.0",
+    "name": "Develop and Manage Business Capabilities",
+    "level": 1,
+    "parentCode": null,
+    "description": "Manage business processes, knowledge, change, and quality to build organizational capabilities."
+  },
+  {
+    "code": "12.1",
+    "name": "Manage business processes",
+    "level": 2,
+    "parentCode": "12.0",
+    "description": "Define, measure, improve, and manage end-to-end business processes."
+  },
+  {
+    "code": "12.1.1",
+    "name": "Define and manage process architecture",
+    "level": 3,
+    "parentCode": "12.1",
+    "description": "Establish the enterprise process architecture and governance framework."
+  },
+  {
+    "code": "12.1.1.1",
+    "name": "Define enterprise process framework",
+    "level": 4,
+    "parentCode": "12.1.1",
+    "description": "Create the process classification framework and process hierarchy."
+  },
+  {
+    "code": "12.1.1.2",
+    "name": "Document and model business processes",
+    "level": 4,
+    "parentCode": "12.1.1",
+    "description": "Map, document, and model current-state and future-state processes."
+  },
+  {
+    "code": "12.1.2",
+    "name": "Measure and improve processes",
+    "level": 3,
+    "parentCode": "12.1",
+    "description": "Assess process performance and implement continuous improvement initiatives."
+  },
+  {
+    "code": "12.1.2.1",
+    "name": "Measure process performance and efficiency",
+    "level": 4,
+    "parentCode": "12.1.2",
+    "description": "Track process cycle times, error rates, costs, and other performance metrics."
+  },
+  {
+    "code": "12.1.2.2",
+    "name": "Identify and implement process improvements",
+    "level": 4,
+    "parentCode": "12.1.2",
+    "description": "Analyze process bottlenecks and implement improvements using Lean, Six Sigma, or other methods."
+  },
+  {
+    "code": "12.2",
+    "name": "Manage enterprise quality",
+    "level": 2,
+    "parentCode": "12.0",
+    "description": "Establish and manage the enterprise quality management system and programs."
+  },
+  {
+    "code": "12.2.1",
+    "name": "Develop quality management approach",
+    "level": 3,
+    "parentCode": "12.2",
+    "description": "Establish quality management standards, policies, and certification programs."
+  },
+  {
+    "code": "12.2.1.1",
+    "name": "Define quality standards and policies",
+    "level": 4,
+    "parentCode": "12.2.1",
+    "description": "Establish quality management policies, standards, and certification requirements."
+  },
+  {
+    "code": "12.2.1.2",
+    "name": "Implement quality management systems",
+    "level": 4,
+    "parentCode": "12.2.1",
+    "description": "Deploy quality management systems such as ISO 9001 and industry-specific standards."
+  },
+  {
+    "code": "12.2.2",
+    "name": "Manage quality operations and audits",
+    "level": 3,
+    "parentCode": "12.2",
+    "description": "Conduct quality audits, inspections, and manage corrective and preventive actions."
+  },
+  {
+    "code": "12.2.2.1",
+    "name": "Conduct internal quality audits",
+    "level": 4,
+    "parentCode": "12.2.2",
+    "description": "Perform scheduled audits to verify adherence to quality standards and procedures."
+  },
+  {
+    "code": "12.2.2.2",
+    "name": "Manage corrective and preventive actions",
+    "level": 4,
+    "parentCode": "12.2.2",
+    "description": "Identify root causes of quality issues and implement corrective and preventive actions."
+  },
+  {
+    "code": "12.3",
+    "name": "Manage change",
+    "level": 2,
+    "parentCode": "12.0",
+    "description": "Plan and manage organizational change to ensure successful adoption of new initiatives."
+  },
+  {
+    "code": "12.3.1",
+    "name": "Plan and manage organizational change",
+    "level": 3,
+    "parentCode": "12.3",
+    "description": "Develop change management strategies and plans for organizational initiatives."
+  },
+  {
+    "code": "12.3.1.1",
+    "name": "Assess change readiness and impact",
+    "level": 4,
+    "parentCode": "12.3.1",
+    "description": "Evaluate organizational readiness for change and assess potential impact on stakeholders."
+  },
+  {
+    "code": "12.3.1.2",
+    "name": "Develop and execute change management plans",
+    "level": 4,
+    "parentCode": "12.3.1",
+    "description": "Create communication, training, and stakeholder engagement plans for change initiatives."
+  },
+  {
+    "code": "13.0",
+    "name": "Manage Health, Safety, Environment, and Sustainability",
+    "level": 1,
+    "parentCode": null,
+    "description": "Manage environmental health and safety programs, sustainability initiatives, and regulatory compliance."
+  },
+  {
+    "code": "13.1",
+    "name": "Develop HSE and sustainability strategy",
+    "level": 2,
+    "parentCode": "13.0",
+    "description": "Create strategies and policies for health, safety, environment, and sustainability."
+  },
+  {
+    "code": "13.1.1",
+    "name": "Develop HSE policies and standards",
+    "level": 3,
+    "parentCode": "13.1",
+    "description": "Establish health, safety, and environmental policies, standards, and management systems."
+  },
+  {
+    "code": "13.1.1.1",
+    "name": "Define health, safety, and environmental policies",
+    "level": 4,
+    "parentCode": "13.1.1",
+    "description": "Develop and publish organizational HSE policies and commitments."
+  },
+  {
+    "code": "13.1.1.2",
+    "name": "Establish HSE management systems and standards",
+    "level": 4,
+    "parentCode": "13.1.1",
+    "description": "Implement management systems such as ISO 14001 and ISO 45001."
+  },
+  {
+    "code": "13.1.2",
+    "name": "Develop sustainability strategy",
+    "level": 3,
+    "parentCode": "13.1",
+    "description": "Create the environmental sustainability and ESG strategy."
+  },
+  {
+    "code": "13.1.2.1",
+    "name": "Define sustainability goals and targets",
+    "level": 4,
+    "parentCode": "13.1.2",
+    "description": "Set measurable sustainability objectives including emissions, waste, and resource targets."
+  },
+  {
+    "code": "13.1.2.2",
+    "name": "Develop sustainability reporting framework",
+    "level": 4,
+    "parentCode": "13.1.2",
+    "description": "Establish ESG reporting frameworks aligned with GRI, SASB, or TCFD standards."
+  },
+  {
+    "code": "13.2",
+    "name": "Manage health and safety",
+    "level": 2,
+    "parentCode": "13.0",
+    "description": "Implement and manage workplace health and safety programs."
+  },
+  {
+    "code": "13.2.1",
+    "name": "Manage workplace safety programs",
+    "level": 3,
+    "parentCode": "13.2",
+    "description": "Develop and implement programs to ensure a safe work environment."
+  },
+  {
+    "code": "13.2.1.1",
+    "name": "Conduct workplace hazard assessments",
+    "level": 4,
+    "parentCode": "13.2.1",
+    "description": "Identify, evaluate, and document workplace hazards and safety risks."
+  },
+  {
+    "code": "13.2.1.2",
+    "name": "Implement safety training and awareness programs",
+    "level": 4,
+    "parentCode": "13.2.1",
+    "description": "Deliver safety training and promote safety awareness across the workforce."
+  },
+  {
+    "code": "13.2.2",
+    "name": "Manage employee health and wellness",
+    "level": 3,
+    "parentCode": "13.2",
+    "description": "Administer occupational health programs and employee wellness initiatives."
+  },
+  {
+    "code": "13.2.2.1",
+    "name": "Manage occupational health programs",
+    "level": 4,
+    "parentCode": "13.2.2",
+    "description": "Administer medical surveillance, exposure monitoring, and fitness-for-duty programs."
+  },
+  {
+    "code": "13.2.2.2",
+    "name": "Implement employee wellness programs",
+    "level": 4,
+    "parentCode": "13.2.2",
+    "description": "Offer wellness programs including mental health, fitness, and ergonomic support."
+  },
+  {
+    "code": "13.3",
+    "name": "Manage environmental programs",
+    "level": 2,
+    "parentCode": "13.0",
+    "description": "Manage environmental compliance, impact reduction, and sustainability operations."
+  },
+  {
+    "code": "13.3.1",
+    "name": "Manage environmental compliance",
+    "level": 3,
+    "parentCode": "13.3",
+    "description": "Ensure compliance with environmental laws, permits, and regulations."
+  },
+  {
+    "code": "13.3.1.1",
+    "name": "Monitor and ensure environmental regulatory compliance",
+    "level": 4,
+    "parentCode": "13.3.1",
+    "description": "Track environmental regulations and ensure organizational compliance."
+  },
+  {
+    "code": "13.3.1.2",
+    "name": "Manage environmental permits and reporting",
+    "level": 4,
+    "parentCode": "13.3.1",
+    "description": "Maintain environmental permits and submit required regulatory reports."
+  },
+  {
+    "code": "13.3.2",
+    "name": "Manage environmental impact and resource conservation",
+    "level": 3,
+    "parentCode": "13.3",
+    "description": "Reduce environmental footprint through waste reduction, energy efficiency, and resource conservation."
+  },
+  {
+    "code": "13.3.2.1",
+    "name": "Manage waste reduction and recycling programs",
+    "level": 4,
+    "parentCode": "13.3.2",
+    "description": "Implement waste minimization, recycling, and circular economy initiatives."
+  },
+  {
+    "code": "13.3.2.2",
+    "name": "Manage energy efficiency and emissions reduction",
+    "level": 4,
+    "parentCode": "13.3.2",
+    "description": "Implement energy conservation programs and greenhouse gas emission reduction initiatives."
+  }
+]
