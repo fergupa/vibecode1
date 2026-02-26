@@ -1,77 +1,36 @@
-# Vibe Code System
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A template project for starting vibe coding sessions with [Claude Code](https://claude.ai/claude-code). Comes pre-loaded with 21 skills across 4 categories.
+## Getting Started
 
-## What's Included
+First, run the development server:
 
-### Development Workflow — [obra/superpowers](https://github.com/obra/superpowers) (14 skills)
-
-| Skill | Purpose |
-|-------|---------|
-| `using-superpowers` | Orchestrates all other skills — determines which to invoke |
-| `brainstorming` | Structured ideation before any creative work |
-| `writing-plans` | Design documents from specs/requirements |
-| `executing-plans` | Execute implementation plans in a separate session |
-| `subagent-driven-development` | Parallel execution of independent implementation tasks |
-| `test-driven-development` | Write tests before implementation |
-| `systematic-debugging` | Root-cause analysis for bugs and failures |
-| `dispatching-parallel-agents` | Run 2+ independent tasks concurrently |
-| `using-git-worktrees` | Isolated workspaces for feature development |
-| `finishing-a-development-branch` | Integration workflow when implementation is complete |
-| `requesting-code-review` | Structured self-review before merging |
-| `receiving-code-review` | Process and respond to review feedback |
-| `verification-before-completion` | Final checks before declaring work done |
-| `writing-skills` | Create or edit Claude Code skills |
-
-### React & Next.js — [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) (1 skill, 57 rules)
-
-| Skill | Purpose |
-|-------|---------|
-| `react-best-practices` | Performance rules across 8 categories: async/waterfalls, bundle size, server, client data fetching, re-renders, rendering, JS performance, advanced patterns |
-
-### Security — [wshobson/agents](https://github.com/wshobson/agents) (5 skills)
-
-| Skill | Purpose |
-|-------|---------|
-| `stride-analysis-patterns` | STRIDE threat modeling |
-| `attack-tree-construction` | Attack scenario mapping |
-| `security-requirement-extraction` | Threats → actionable requirements |
-| `threat-mitigation-mapping` | Defense-in-depth prioritization |
-| `sast-configuration` | Semgrep, SonarQube, CodeQL setup |
-
-### Browser Automation — [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) (1 skill)
-
-| Skill | Purpose |
-|-------|---------|
-| `agent-browser` | Navigate pages, fill forms, click buttons, take screenshots, extract data |
-
-## Quick Start
-
-### Create a new project from this template
-
-**CLI:**
 ```bash
-gh repo create my-new-app --template fergupa/vibe-code-system --clone --public
-cd my-new-app
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-**GitHub UI:** Click **"Use this template"** → **"Create a new repository"**
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Start coding
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Open the new project in VS Code with [Claude Code](https://claude.ai/claude-code) and describe what you want to build. The `brainstorming` skill will automatically kick in before any implementation begins.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Project Structure
+## Learn More
 
-```
-.claude/
-  skills/           ← All 21 skills live here
-  settings.local.json
-docs/
-  plans/            ← Design documents go here
-CLAUDE.md           ← Project instructions for Claude Code
-```
+To learn more about Next.js, take a look at the following resources:
 
-## License
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-The skills in this template are sourced from their respective open-source repositories. See each skill's source repo for license details.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

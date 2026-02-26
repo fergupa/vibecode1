@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AdminUser {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
+
+model Project {
+  id                    String           @id @default(uuid())
+  name                  String
+  description           String?
+  sharedServicesSalary  Decimal?         @db.Decimal(12, 2)
+  createdAt             DateTime         @default(now())
+  taxonomyNodes         TaxonomyNode[]
+  employees             Employee[]
+  surveyCampaigns       SurveyCampaign[]
+}
+
+enum PreferredLocation {
+  Corporate
+  BusinessUnit
+  SharedServices
+}
+
+model TaxonomyNode {
+  id                String            @id @default(uuid())
+  projectId         String
+  project           Project           @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  parentId          String?
+  parent            TaxonomyNode?     @relation("TaxonomyTree", fields: [parentId], references: [id], onDelete: Cascade)
+  children          TaxonomyNode[]    @relation("TaxonomyTree")
+  code              String
+  name              String
+  level             Int
+  description       String?
+  preferredLocation PreferredLocation?
+  locationInherited Boolean           @default(true)
+  sortOrder         Int               @default(0)
+  surveyResponses   SurveyResponse[]
+
+  @@unique([projectId, code])
+  @@index([projectId, parentId])
+  @@index([projectId, level])
+}
+
+model Employee {
+  id                String             @id @default(uuid())
+  projectId         String
+  project           Project            @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  employeeId        String
+  name              String
+  email             String?
+  title             String
+  department        String?
+  location          String
+  businessUnit      String?
+  fullyLoadedSalary Decimal            @db.Decimal(12, 2)
+  fte               Decimal            @default(1.0) @db.Decimal(5, 2)
+  jobFamily         String?
+  surveyAssignments SurveyAssignment[]
+
+  @@unique([projectId, employeeId])
+  @@index([projectId])
+}
+
+enum CampaignStatus {
+  Draft
+  Active
+  Closed
+}
+
+enum CampaignMode {
+  Individual
+  RoleBased
+}
+
+model SurveyCampaign {
+  id            String             @id @default(uuid())
+  projectId     String
+  project       Project            @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  name          String
+  status        CampaignStatus     @default(Draft)
+  mode          CampaignMode
+  taxonomyLevel Int                @default(4)
+  createdAt     DateTime           @default(now())
+  closedAt      DateTime?
+  assignments   SurveyAssignment[]
+
+  @@index([projectId])
+}
+
+enum AssignmentStatus {
+  Pending
+  InProgress
+  Completed
+}
+
+model SurveyAssignment {
+  id         String           @id @default(uuid())
+  campaignId String
+  campaign   SurveyCampaign   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  employeeId String?
+  employee   Employee?        @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+  roleName   String?
+  headcount  Int              @default(1)
+  token      String           @unique
+  status     AssignmentStatus @default(Pending)
+  responses  SurveyResponse[]
+
+  @@index([campaignId])
+  @@index([token])
+}
+
+model SurveyResponse {
+  id             String         @id @default(uuid())
+  assignmentId   String
+  assignment     SurveyAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  taxonomyNodeId String
+  taxonomyNode   TaxonomyNode   @relation(fields: [taxonomyNodeId], references: [id], onDelete: Cascade)
+  percentTime    Decimal        @db.Decimal(5, 2)
+  submittedAt    DateTime?
+
+  @@unique([assignmentId, taxonomyNodeId])
+  @@index([assignmentId])
+}
