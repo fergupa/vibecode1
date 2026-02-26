@@ -8,6 +8,7 @@ import { SunburstChart } from "@/components/analysis/sunburst-chart";
 import { WaterfallChart } from "@/components/analysis/waterfall-chart";
 import { LocationComparisonBars } from "@/components/analysis/location-comparison-bars";
 import { SummaryTable } from "@/components/analysis/summary-table";
+import { ExportButtons } from "@/components/analysis/export-buttons";
 import { Button } from "@/components/ui/button";
 
 type LocationBreakdown = {
@@ -112,9 +113,12 @@ export default function AnalysisPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Analysis</h1>
-        <p className="text-sm text-gray-500">{selectedProject.name}</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Analysis</h1>
+          <p className="text-sm text-gray-500">{selectedProject.name}</p>
+        </div>
+        <ExportButtons projectId={selectedProject.id} />
       </div>
 
       {/* Tab navigation */}
