@@ -35,6 +35,9 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       ...(body.sharedServicesSalary !== undefined && {
         sharedServicesSalary: body.sharedServicesSalary,
       }),
+      ...(body.closedAt !== undefined && {
+        closedAt: body.closedAt ? new Date(body.closedAt) : null,
+      }),
     },
   });
 

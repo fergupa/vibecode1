@@ -13,10 +13,37 @@ export async function GET() {
       _count: {
         select: { taxonomyNodes: true, employees: true, surveyCampaigns: true },
       },
+      surveyCampaigns: {
+        select: {
+          status: true,
+          _count: { select: { assignments: true } },
+          assignments: { select: { status: true } },
+        },
+      },
     },
   });
 
-  return NextResponse.json(projects);
+  const result = projects.map((p) => {
+    const campaignStats = {
+      total: p.surveyCampaigns.length,
+      draft: p.surveyCampaigns.filter((c) => c.status === "Draft").length,
+      active: p.surveyCampaigns.filter((c) => c.status === "Active").length,
+      closed: p.surveyCampaigns.filter((c) => c.status === "Closed").length,
+      totalAssignments: p.surveyCampaigns.reduce(
+        (sum, c) => sum + c._count.assignments,
+        0
+      ),
+      completedAssignments: p.surveyCampaigns.reduce(
+        (sum, c) =>
+          sum + c.assignments.filter((a) => a.status === "Completed").length,
+        0
+      ),
+    };
+    const { surveyCampaigns: _, ...project } = p;
+    return { ...project, campaignStats };
+  });
+
+  return NextResponse.json(result);
 }
 
 export async function POST(req: NextRequest) {

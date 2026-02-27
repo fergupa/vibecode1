@@ -31,7 +31,9 @@ describe("GET /api/projects", () => {
         name: "Test Project",
         description: null,
         createdAt: new Date(),
+        closedAt: null,
         _count: { taxonomyNodes: 5, employees: 10, surveyCampaigns: 2 },
+        surveyCampaigns: [],
       },
     ];
     vi.mocked(prisma.project.findMany).mockResolvedValue(mockProjects as never);

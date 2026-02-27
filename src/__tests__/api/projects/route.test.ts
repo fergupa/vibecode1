@@ -32,7 +32,13 @@ describe("GET /api/projects", () => {
     mockedGetServerSession.mockResolvedValue({ user: { name: "admin" } });
 
     const mockProjects = [
-      { id: "1", name: "Project A", _count: { taxonomyNodes: 0, employees: 0, surveyCampaigns: 0 } },
+      {
+        id: "1",
+        name: "Project A",
+        closedAt: null,
+        _count: { taxonomyNodes: 0, employees: 0, surveyCampaigns: 0 },
+        surveyCampaigns: [],
+      },
     ];
     prisma.project.findMany.mockResolvedValue(mockProjects);
 
@@ -40,15 +46,10 @@ describe("GET /api/projects", () => {
     expect(res.status).toBe(200);
 
     const body = await res.json();
-    expect(body).toEqual(mockProjects);
-    expect(prisma.project.findMany).toHaveBeenCalledWith({
-      orderBy: { createdAt: "desc" },
-      include: {
-        _count: {
-          select: { taxonomyNodes: true, employees: true, surveyCampaigns: true },
-        },
-      },
-    });
+    expect(body).toHaveLength(1);
+    expect(body[0].name).toBe("Project A");
+    expect(body[0].campaignStats).toBeDefined();
+    expect(body[0].campaignStats.total).toBe(0);
   });
 });
 

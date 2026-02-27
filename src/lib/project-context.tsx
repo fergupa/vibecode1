@@ -2,13 +2,24 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
+type CampaignStats = {
+  total: number;
+  draft: number;
+  active: number;
+  closed: number;
+  totalAssignments: number;
+  completedAssignments: number;
+};
+
 type Project = {
   id: string;
   name: string;
   description: string | null;
   sharedServicesSalary: number | null;
   createdAt: string;
+  closedAt: string | null;
   _count: { taxonomyNodes: number; employees: number; surveyCampaigns: number };
+  campaignStats: CampaignStats;
 };
 
 type ProjectContextType = {

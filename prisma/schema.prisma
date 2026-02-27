@@ -21,6 +21,7 @@ model Project {
   description           String?
   sharedServicesSalary  Decimal?         @db.Decimal(12, 2)
   createdAt             DateTime         @default(now())
+  closedAt              DateTime?
   taxonomyNodes         TaxonomyNode[]
   employees             Employee[]
   surveyCampaigns       SurveyCampaign[]
