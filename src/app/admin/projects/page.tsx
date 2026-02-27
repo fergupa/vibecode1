@@ -1,10 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import { useProject } from "@/lib/project-context";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Card,
   CardContent,
@@ -12,32 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ProjectSetupWizard } from "@/components/project-setup-wizard";
 
 export default function ProjectsPage() {
   const { projects, selectedProject, selectProject, refreshProjects, loading } =
     useProject();
-  const [showCreate, setShowCreate] = useState(false);
-  const [creating, setCreating] = useState(false);
-
-  async function handleCreate(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setCreating(true);
-    const formData = new FormData(e.currentTarget);
-    const res = await fetch("/api/projects", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: formData.get("name"),
-        description: formData.get("description"),
-      }),
-    });
-    if (res.ok) {
-      await refreshProjects();
-      setShowCreate(false);
-      (e.target as HTMLFormElement).reset();
-    }
-    setCreating(false);
-  }
 
   if (loading) {
     return <p className="text-gray-500">Loading projects...</p>;
@@ -54,33 +29,8 @@ export default function ProjectsPage() {
               : "Select or create a project to get started."}
           </p>
         </div>
-        <Button onClick={() => setShowCreate(!showCreate)}>
-          {showCreate ? "Cancel" : "New Project"}
-        </Button>
+        <ProjectSetupWizard onComplete={async () => { await refreshProjects(); }} />
       </div>
-
-      {showCreate && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Create Project</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleCreate} className="space-y-4">
-              <div>
-                <Label htmlFor="name">Project Name</Label>
-                <Input id="name" name="name" required />
-              </div>
-              <div>
-                <Label htmlFor="description">Description (optional)</Label>
-                <Input id="description" name="description" />
-              </div>
-              <Button type="submit" disabled={creating}>
-                {creating ? "Creating..." : "Create Project"}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-      )}
 
       {projects.length === 0 ? (
         <p className="text-gray-500">
