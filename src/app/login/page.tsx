@@ -29,7 +29,7 @@ export default function LoginPage() {
       setError("Invalid username or password");
       setLoading(false);
     } else {
-      router.push("/admin/analysis");
+      router.push("/admin");
     }
   }
 
