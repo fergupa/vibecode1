@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -33,8 +33,28 @@ export function CampaignCreateDialog({
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState("");
   const [mode, setMode] = useState("Individual");
-  const [taxonomyLevel, setTaxonomyLevel] = useState("4");
+  const [taxonomyLevel, setTaxonomyLevel] = useState("");
+  const [availableLevels, setAvailableLevels] = useState<{ level: number; count: number }[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    fetch(`/api/projects/${projectId}/taxonomy`)
+      .then((res) => res.json())
+      .then((nodes: { level: number }[]) => {
+        const levelCounts = new Map<number, number>();
+        for (const n of nodes) {
+          levelCounts.set(n.level, (levelCounts.get(n.level) || 0) + 1);
+        }
+        const levels = [...levelCounts.entries()]
+          .sort(([a], [b]) => a - b)
+          .map(([level, count]) => ({ level, count }));
+        setAvailableLevels(levels);
+        if (levels.length > 0) {
+          setTaxonomyLevel(String(levels[levels.length - 1].level));
+        }
+      });
+  }, [open, projectId]);
 
   async function handleCreate() {
     if (!name.trim()) {
@@ -63,7 +83,6 @@ export function CampaignCreateDialog({
         setOpen(false);
         setName("");
         setMode("Individual");
-        setTaxonomyLevel("4");
       }
     } catch {
       setError("Network error");
@@ -114,20 +133,33 @@ export function CampaignCreateDialog({
 
           <div>
             <Label>Taxonomy Level</Label>
-            <Select value={taxonomyLevel} onValueChange={setTaxonomyLevel}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="3">Level 3 — Processes</SelectItem>
-                <SelectItem value="4">Level 4 — Activities</SelectItem>
-              </SelectContent>
-            </Select>
+            {availableLevels.length === 0 ? (
+              <p className="text-sm text-amber-600">
+                No taxonomy nodes found. Import a taxonomy first.
+              </p>
+            ) : (
+              <Select value={taxonomyLevel} onValueChange={setTaxonomyLevel}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableLevels.map(({ level, count }) => (
+                    <SelectItem key={level} value={String(level)}>
+                      Level {level} ({count} items)
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
           </div>
 
           {error && <p className="text-sm text-red-600">{error}</p>}
 
-          <Button onClick={handleCreate} disabled={creating} className="w-full">
+          <Button
+            onClick={handleCreate}
+            disabled={creating || availableLevels.length === 0}
+            className="w-full"
+          >
             {creating ? "Creating..." : "Create Campaign"}
           </Button>
         </div>
