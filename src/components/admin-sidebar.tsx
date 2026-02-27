@@ -6,7 +6,7 @@ import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { href: "/admin", label: "Dashboard" },
+  { href: "/admin/projects", label: "Projects" },
   { href: "/admin/taxonomy", label: "Taxonomy" },
   { href: "/admin/employees", label: "Employees" },
   { href: "/admin/surveys", label: "Surveys" },
@@ -25,7 +25,7 @@ export function AdminSidebar() {
             key={item.href}
             href={item.href}
             className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-              pathname === item.href
+              pathname === item.href || pathname.startsWith(item.href + "/")
                 ? "bg-gray-200 text-gray-900"
                 : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
             }`}
