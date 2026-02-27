@@ -108,7 +108,7 @@ export default function TaxonomyPage() {
       <div>
         <h1 className="text-2xl font-bold">Taxonomy</h1>
         <p className="mt-2 text-gray-500">
-          Select a project from the Projects page first.
+          Select a project from the Home page first.
         </p>
       </div>
     );

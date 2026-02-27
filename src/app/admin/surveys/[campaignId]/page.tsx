@@ -104,7 +104,7 @@ export default function CampaignDetailPage() {
     return (
       <div>
         <h1 className="text-2xl font-bold">Campaign</h1>
-        <p className="mt-2 text-gray-500">Select a project from the Projects page first.</p>
+        <p className="mt-2 text-gray-500">Select a project from the Home page first.</p>
       </div>
     );
   }
