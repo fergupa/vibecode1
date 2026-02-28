@@ -18,13 +18,24 @@ export async function GET(
 
   const project = await prisma.project.findUnique({
     where: { id },
-    select: { sharedServicesSalary: true },
+    select: { sharedServicesSalary: true, sharedServiceLocations: true },
   });
 
   if (!project)
     return NextResponse.json({ error: "Project not found" }, { status: 404 });
 
-  const sharedServicesSalary = Number(project.sharedServicesSalary ?? 75000);
+  // Build salary map: SSC location ID → salary. null key = default.
+  const sscSalaryMap = new Map<string | null, number>();
+  if (project.sharedServiceLocations.length > 0) {
+    for (const loc of project.sharedServiceLocations) {
+      sscSalaryMap.set(loc.id, Number(loc.salary));
+      if (loc.isDefault) {
+        sscSalaryMap.set(null, Number(loc.salary));
+      }
+    }
+  } else {
+    sscSalaryMap.set(null, Number(project.sharedServicesSalary ?? 75000));
+  }
 
   // Get response rate
   const campaigns = await prisma.surveyCampaign.findMany({
@@ -50,7 +61,7 @@ export async function GET(
 
   // Run analysis pipeline
   const gapAnalysis = await runGapAnalysis(id);
-  const costModel = computeCostModel(gapAnalysis, sharedServicesSalary);
+  const costModel = computeCostModel(gapAnalysis, sscSalaryMap);
   const { nodes, totals } = aggregateResults(gapAnalysis, costModel);
 
   return NextResponse.json({
@@ -59,7 +70,12 @@ export async function GET(
       responseRate,
       totalAssignments,
       completedAssignments,
-      sharedServicesSalary,
+      sharedServiceLocations: project.sharedServiceLocations.map((loc) => ({
+        id: loc.id,
+        name: loc.name,
+        salary: Number(loc.salary),
+        isDefault: loc.isDefault,
+      })),
     },
     nodes,
   });

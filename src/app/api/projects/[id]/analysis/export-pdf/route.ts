@@ -21,17 +21,25 @@ export async function GET(
 
   const project = await prisma.project.findUnique({
     where: { id },
-    select: { name: true, sharedServicesSalary: true },
+    select: { name: true, sharedServicesSalary: true, sharedServiceLocations: true },
   });
 
   if (!project)
     return NextResponse.json({ error: "Project not found" }, { status: 404 });
 
-  const sharedServicesSalary = Number(project.sharedServicesSalary ?? 75000);
+  const sscSalaryMap = new Map<string | null, number>();
+  if (project.sharedServiceLocations.length > 0) {
+    for (const loc of project.sharedServiceLocations) {
+      sscSalaryMap.set(loc.id, Number(loc.salary));
+      if (loc.isDefault) sscSalaryMap.set(null, Number(loc.salary));
+    }
+  } else {
+    sscSalaryMap.set(null, Number(project.sharedServicesSalary ?? 75000));
+  }
 
   // Run analysis
   const gapAnalysis = await runGapAnalysis(id);
-  const costModel = computeCostModel(gapAnalysis, sharedServicesSalary);
+  const costModel = computeCostModel(gapAnalysis, sscSalaryMap);
   const { nodes, totals } = aggregateResults(gapAnalysis, costModel);
 
   // Get response rate

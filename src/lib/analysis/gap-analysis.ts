@@ -14,6 +14,7 @@ export type ActivityAnalysis = {
   parentId: string | null;
   preferredLocation: string | null;
   effectiveLocation: string | null;
+  sharedServiceLocationId: string | null;
   currentLocationBreakdown: LocationBreakdown[];
   totalFte: number;
   totalCost: number;
@@ -55,14 +56,52 @@ function computeEffectiveLocations(
   return cache;
 }
 
+/**
+ * Compute effective SSC location ID for each node by walking up the tree.
+ * Nodes with sharedServiceLocationId set use it; otherwise inherit from parent.
+ * null means "use project default SSC location".
+ */
+function computeEffectiveSSCLocations(
+  nodes: { id: string; parentId: string | null; sharedServiceLocationId: string | null }[]
+): Map<string, string | null> {
+  const nodeMap = new Map(nodes.map((n) => [n.id, n]));
+  const cache = new Map<string, string | null>();
+
+  function getEffective(nodeId: string): string | null {
+    if (cache.has(nodeId)) return cache.get(nodeId)!;
+    const node = nodeMap.get(nodeId);
+    if (!node) return null;
+    if (node.sharedServiceLocationId) {
+      cache.set(nodeId, node.sharedServiceLocationId);
+      return node.sharedServiceLocationId;
+    }
+    if (node.parentId) {
+      const parentLoc = getEffective(node.parentId);
+      cache.set(nodeId, parentLoc);
+      return parentLoc;
+    }
+    cache.set(nodeId, null);
+    return null;
+  }
+
+  for (const node of nodes) {
+    getEffective(node.id);
+  }
+  return cache;
+}
+
 export async function runGapAnalysis(projectId: string): Promise<ActivityAnalysis[]> {
   // Get all taxonomy nodes for the project
   const allNodes = await prisma.taxonomyNode.findMany({
     where: { projectId },
-    select: { id: true, code: true, name: true, level: true, parentId: true, preferredLocation: true },
+    select: {
+      id: true, code: true, name: true, level: true, parentId: true,
+      preferredLocation: true, sharedServiceLocationId: true,
+    },
   });
 
   const effectiveLocations = computeEffectiveLocations(allNodes);
+  const effectiveSSCLocations = computeEffectiveSSCLocations(allNodes);
 
   // Get all completed survey responses for this project
   const responses = await prisma.surveyResponse.findMany({
@@ -166,6 +205,7 @@ export async function runGapAnalysis(projectId: string): Promise<ActivityAnalysi
       parentId: node.parentId,
       preferredLocation: node.preferredLocation,
       effectiveLocation: effectiveLoc,
+      sharedServiceLocationId: effectiveSSCLocations.get(node.id) || null,
       currentLocationBreakdown: breakdown,
       totalFte,
       totalCost,

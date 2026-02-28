@@ -12,6 +12,7 @@ type TaxonomyNode = {
   parentId: string | null;
   description: string | null;
   preferredLocation: string | null;
+  sharedServiceLocationId: string | null;
   sortOrder: number;
 };
 

@@ -20,6 +20,7 @@ type Project = {
   closedAt: string | null;
   _count: { taxonomyNodes: number; employees: number; surveyCampaigns: number };
   campaignStats: CampaignStats;
+  sharedServiceLocations?: { id: string; name: string; salary: number; isDefault: boolean }[];
 };
 
 type ProjectContextType = {

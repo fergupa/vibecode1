@@ -7,6 +7,7 @@ export type CostModelResult = {
   level: number;
   parentId: string | null;
   effectiveLocation: string | null;
+  sharedServiceLocationId: string | null;
   currentCost: number;
   futureCost: number;
   savings: number;
@@ -16,16 +17,23 @@ export type CostModelResult = {
 /**
  * For activities where work is happening at non-preferred locations,
  * calculate what the cost would be if that work moved to shared services.
+ *
+ * sscSalaryMap keys are SharedServiceLocation IDs; null key = project default.
  */
 export function computeCostModel(
   analyses: ActivityAnalysis[],
-  sharedServicesSalary: number
+  sscSalaryMap: Map<string | null, number>
 ): CostModelResult[] {
   return analyses.map((a) => {
     // Current cost at non-preferred locations
     const currentCost = a.costAtNonPreferred;
-    // Future cost: same FTEs at shared services salary
-    const futureCost = a.fteAtNonPreferred * sharedServicesSalary;
+    // Look up salary: node-specific SSC location → project default → hardcoded fallback
+    const salary =
+      sscSalaryMap.get(a.sharedServiceLocationId) ??
+      sscSalaryMap.get(null) ??
+      75000;
+    // Future cost: same FTEs at the applicable shared services salary
+    const futureCost = a.fteAtNonPreferred * salary;
     const savings = currentCost - futureCost;
 
     return {
@@ -35,6 +43,7 @@ export function computeCostModel(
       level: a.level,
       parentId: a.parentId,
       effectiveLocation: a.effectiveLocation,
+      sharedServiceLocationId: a.sharedServiceLocationId,
       currentCost,
       futureCost,
       savings: Math.max(0, savings), // Only count positive savings

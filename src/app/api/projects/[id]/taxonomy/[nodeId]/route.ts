@@ -28,6 +28,9 @@ export async function PATCH(
       ...(body.preferredLocation !== undefined && {
         preferredLocation: body.preferredLocation || null,
       }),
+      ...(body.sharedServiceLocationId !== undefined && {
+        sharedServiceLocationId: body.sharedServiceLocationId || null,
+      }),
     },
   });
 

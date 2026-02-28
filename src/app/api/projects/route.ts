@@ -20,6 +20,9 @@ export async function GET() {
           assignments: { select: { status: true } },
         },
       },
+      sharedServiceLocations: {
+        orderBy: [{ isDefault: "desc" as const }, { name: "asc" as const }],
+      },
     },
   });
 
@@ -51,14 +54,34 @@ export async function POST(req: NextRequest) {
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json();
-  const { name, description } = body;
+  const { name, description, sscLocations } = body;
 
   if (!name || typeof name !== "string" || name.trim().length === 0) {
     return NextResponse.json({ error: "Name is required" }, { status: 400 });
   }
 
   const project = await prisma.project.create({
-    data: { name: name.trim(), description: description?.trim() || null },
+    data: {
+      name: name.trim(),
+      description: description?.trim() || null,
+      ...(sscLocations &&
+        Array.isArray(sscLocations) &&
+        sscLocations.length > 0 && {
+          sharedServiceLocations: {
+            create: sscLocations.map(
+              (
+                loc: { name: string; salary: number; isDefault?: boolean },
+                i: number
+              ) => ({
+                name: loc.name.trim(),
+                salary: loc.salary,
+                isDefault: loc.isDefault ?? i === 0,
+              })
+            ),
+          },
+        }),
+    },
+    include: { sharedServiceLocations: true },
   });
 
   return NextResponse.json(project, { status: 201 });

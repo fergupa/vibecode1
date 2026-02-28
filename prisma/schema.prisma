@@ -16,15 +16,16 @@ model AdminUser {
 }
 
 model Project {
-  id                    String           @id @default(uuid())
-  name                  String
-  description           String?
-  sharedServicesSalary  Decimal?         @db.Decimal(12, 2)
-  createdAt             DateTime         @default(now())
-  closedAt              DateTime?
-  taxonomyNodes         TaxonomyNode[]
-  employees             Employee[]
-  surveyCampaigns       SurveyCampaign[]
+  id                     String                  @id @default(uuid())
+  name                   String
+  description            String?
+  sharedServicesSalary   Decimal?                @db.Decimal(12, 2)
+  createdAt              DateTime                @default(now())
+  closedAt               DateTime?
+  taxonomyNodes          TaxonomyNode[]
+  employees              Employee[]
+  surveyCampaigns        SurveyCampaign[]
+  sharedServiceLocations SharedServiceLocation[]
 }
 
 enum PreferredLocation {
@@ -46,8 +47,10 @@ model TaxonomyNode {
   description       String?
   preferredLocation PreferredLocation?
   locationInherited Boolean           @default(true)
-  sortOrder         Int               @default(0)
-  surveyResponses   SurveyResponse[]
+  sortOrder                Int                    @default(0)
+  sharedServiceLocationId  String?
+  sharedServiceLocation    SharedServiceLocation? @relation(fields: [sharedServiceLocationId], references: [id], onDelete: SetNull)
+  surveyResponses          SurveyResponse[]
 
   @@unique([projectId, code])
   @@index([projectId, parentId])
@@ -133,4 +136,17 @@ model SurveyResponse {
 
   @@unique([assignmentId, taxonomyNodeId])
   @@index([assignmentId])
+}
+
+model SharedServiceLocation {
+  id            String         @id @default(uuid())
+  projectId     String
+  project       Project        @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  name          String
+  salary        Decimal        @db.Decimal(12, 2)
+  isDefault     Boolean        @default(false)
+  taxonomyNodes TaxonomyNode[]
+
+  @@unique([projectId, name])
+  @@index([projectId])
 }

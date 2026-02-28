@@ -11,6 +11,7 @@ function makeAnalysis(overrides: Partial<ActivityAnalysis> = {}): ActivityAnalys
     parentId: null,
     preferredLocation: "SharedServices",
     effectiveLocation: "SharedServices",
+    sharedServiceLocationId: null,
     currentLocationBreakdown: [],
     totalFte: 10,
     totalCost: 1_000_000,
@@ -22,19 +23,19 @@ function makeAnalysis(overrides: Partial<ActivityAnalysis> = {}): ActivityAnalys
   };
 }
 
+function salaryMap(defaultSalary: number): Map<string | null, number> {
+  return new Map([[null, defaultSalary]]);
+}
+
 describe("computeCostModel", () => {
   it("computes savings when non-preferred cost exceeds shared services cost", () => {
     const analyses = [makeAnalysis()];
-    const sharedServicesSalary = 75_000;
-    const results = computeCostModel(analyses, sharedServicesSalary);
+    const results = computeCostModel(analyses, salaryMap(75_000));
 
     expect(results).toHaveLength(1);
     const r = results[0];
-    // Current cost at non-preferred = $600,000
     expect(r.currentCost).toBe(600_000);
-    // Future cost = 6 FTE * $75,000 = $450,000
     expect(r.futureCost).toBe(450_000);
-    // Savings = $600,000 - $450,000 = $150,000
     expect(r.savings).toBe(150_000);
     expect(r.fteAffected).toBe(6);
   });
@@ -43,13 +44,12 @@ describe("computeCostModel", () => {
     const analyses = [
       makeAnalysis({
         fteAtNonPreferred: 2,
-        costAtNonPreferred: 100_000, // $50K per FTE
+        costAtNonPreferred: 100_000,
       }),
     ];
-    const sharedServicesSalary = 75_000; // $75K per FTE — more expensive
-    const results = computeCostModel(analyses, sharedServicesSalary);
+    const results = computeCostModel(analyses, salaryMap(75_000));
 
-    expect(results[0].savings).toBe(0); // Math.max(0, ...) clips to 0
+    expect(results[0].savings).toBe(0);
     expect(results[0].futureCost).toBe(150_000);
     expect(results[0].currentCost).toBe(100_000);
   });
@@ -61,7 +61,7 @@ describe("computeCostModel", () => {
         costAtNonPreferred: 0,
       }),
     ];
-    const results = computeCostModel(analyses, 75_000);
+    const results = computeCostModel(analyses, salaryMap(75_000));
     expect(results[0].savings).toBe(0);
     expect(results[0].futureCost).toBe(0);
     expect(results[0].fteAffected).toBe(0);
@@ -72,12 +72,52 @@ describe("computeCostModel", () => {
       makeAnalysis({ nodeId: "n1", fteAtNonPreferred: 5, costAtNonPreferred: 500_000 }),
       makeAnalysis({ nodeId: "n2", fteAtNonPreferred: 3, costAtNonPreferred: 300_000 }),
     ];
-    const results = computeCostModel(analyses, 75_000);
+    const results = computeCostModel(analyses, salaryMap(75_000));
     expect(results).toHaveLength(2);
-
-    // n1: savings = 500K - (5*75K) = 500K - 375K = 125K
     expect(results[0].savings).toBe(125_000);
-    // n2: savings = 300K - (3*75K) = 300K - 225K = 75K
     expect(results[1].savings).toBe(75_000);
+  });
+
+  it("uses per-node SSC location salary when available", () => {
+    const sscMap = new Map<string | null, number>([
+      [null, 75_000],
+      ["loc-manila", 50_000],
+      ["loc-krakow", 90_000],
+    ]);
+
+    const analyses = [
+      makeAnalysis({
+        nodeId: "n1",
+        sharedServiceLocationId: "loc-manila",
+        fteAtNonPreferred: 4,
+        costAtNonPreferred: 400_000,
+      }),
+      makeAnalysis({
+        nodeId: "n2",
+        sharedServiceLocationId: "loc-krakow",
+        fteAtNonPreferred: 4,
+        costAtNonPreferred: 400_000,
+      }),
+      makeAnalysis({
+        nodeId: "n3",
+        sharedServiceLocationId: null,
+        fteAtNonPreferred: 4,
+        costAtNonPreferred: 400_000,
+      }),
+    ];
+
+    const results = computeCostModel(analyses, sscMap);
+
+    // n1: Manila — 4 * 50K = 200K, savings = 400K - 200K = 200K
+    expect(results[0].futureCost).toBe(200_000);
+    expect(results[0].savings).toBe(200_000);
+
+    // n2: Krakow — 4 * 90K = 360K, savings = 400K - 360K = 40K
+    expect(results[1].futureCost).toBe(360_000);
+    expect(results[1].savings).toBe(40_000);
+
+    // n3: default — 4 * 75K = 300K, savings = 400K - 300K = 100K
+    expect(results[2].futureCost).toBe(300_000);
+    expect(results[2].savings).toBe(100_000);
   });
 });

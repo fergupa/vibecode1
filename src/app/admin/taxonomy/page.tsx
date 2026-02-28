@@ -9,10 +9,18 @@ import { TaxonomyImportDialog } from "@/components/taxonomy-import-dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 
+type SSCLocation = {
+  id: string;
+  name: string;
+  salary: number;
+  isDefault: boolean;
+};
+
 export default function TaxonomyPage() {
   const { selectedProject } = useProject();
   const [nodes, setNodes] = useState<TaxonomyNode[]>([]);
   const [selectedNode, setSelectedNode] = useState<TaxonomyNode | null>(null);
+  const [sscLocations, setSscLocations] = useState<SSCLocation[]>([]);
   const [loading, setLoading] = useState(false);
 
   const loadNodes = useCallback(async () => {
@@ -25,9 +33,18 @@ export default function TaxonomyPage() {
     setLoading(false);
   }, [selectedProject]);
 
+  const loadSSCLocations = useCallback(async () => {
+    if (!selectedProject) return;
+    const res = await fetch(`/api/projects/${selectedProject.id}/ssc-locations`);
+    if (res.ok) {
+      setSscLocations(await res.json());
+    }
+  }, [selectedProject]);
+
   useEffect(() => {
     loadNodes();
-  }, [loadNodes]);
+    loadSSCLocations();
+  }, [loadNodes, loadSSCLocations]);
 
   async function handleSaveNode(nodeId: string, data: Partial<TaxonomyNode>) {
     if (!selectedProject) return;
@@ -155,6 +172,7 @@ export default function TaxonomyPage() {
                 key={selectedNode.id}
                 node={selectedNode}
                 parentLocation={getParentLocation(selectedNode)}
+                sscLocations={sscLocations}
                 onSave={handleSaveNode}
                 onDelete={handleDeleteNode}
                 onClose={() => setSelectedNode(null)}

@@ -20,12 +20,21 @@ type TaxonomyNode = {
   parentId: string | null;
   description: string | null;
   preferredLocation: string | null;
+  sharedServiceLocationId: string | null;
   sortOrder: number;
+};
+
+type SSCLocation = {
+  id: string;
+  name: string;
+  salary: number;
+  isDefault: boolean;
 };
 
 type TaxonomyNodeEditorProps = {
   node: TaxonomyNode;
   parentLocation: string | null;
+  sscLocations?: SSCLocation[];
   onSave: (nodeId: string, data: Partial<TaxonomyNode>) => Promise<void>;
   onDelete: (nodeId: string) => Promise<void>;
   onClose: () => void;
@@ -34,6 +43,7 @@ type TaxonomyNodeEditorProps = {
 export function TaxonomyNodeEditor({
   node,
   parentLocation,
+  sscLocations,
   onSave,
   onDelete,
   onClose,
@@ -44,6 +54,9 @@ export function TaxonomyNodeEditor({
   const [preferredLocation, setPreferredLocation] = useState(
     node.preferredLocation || "inherit"
   );
+  const [sscLocationId, setSscLocationId] = useState(
+    node.sharedServiceLocationId || "default"
+  );
   const [saving, setSaving] = useState(false);
 
   async function handleSave() {
@@ -53,6 +66,10 @@ export function TaxonomyNodeEditor({
       code,
       description: description || null,
       preferredLocation: preferredLocation === "inherit" ? null : preferredLocation,
+      sharedServiceLocationId:
+        preferredLocation === "SHARED_SERVICES" && sscLocationId !== "default"
+          ? sscLocationId
+          : null,
     });
     setSaving(false);
   }
@@ -114,6 +131,27 @@ export function TaxonomyNodeEditor({
             </SelectContent>
           </Select>
         </div>
+        {preferredLocation === "SHARED_SERVICES" &&
+          sscLocations &&
+          sscLocations.length > 0 && (
+            <div>
+              <Label htmlFor="node-ssc-location">SSC Location</Label>
+              <Select value={sscLocationId} onValueChange={setSscLocationId}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="default">Use Project Default</SelectItem>
+                  {sscLocations.map((loc) => (
+                    <SelectItem key={loc.id} value={loc.id}>
+                      {loc.name} (${loc.salary.toLocaleString()})
+                      {loc.isDefault ? " *" : ""}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
       </div>
 
       <div className="flex gap-2">

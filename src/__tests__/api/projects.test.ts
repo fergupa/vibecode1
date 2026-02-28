@@ -34,6 +34,7 @@ describe("GET /api/projects", () => {
         closedAt: null,
         _count: { taxonomyNodes: 5, employees: 10, surveyCampaigns: 2 },
         surveyCampaigns: [],
+        sharedServiceLocations: [],
       },
     ];
     vi.mocked(prisma.project.findMany).mockResolvedValue(mockProjects as never);
@@ -93,6 +94,7 @@ describe("POST /api/projects", () => {
     expect(body.name).toBe("New Project");
     expect(prisma.project.create).toHaveBeenCalledWith({
       data: { name: "New Project", description: "A test project" },
+      include: { sharedServiceLocations: true },
     });
   });
 
@@ -112,6 +114,7 @@ describe("POST /api/projects", () => {
     await POST(req);
     expect(prisma.project.create).toHaveBeenCalledWith({
       data: { name: "Trimmed", description: null },
+      include: { sharedServiceLocations: true },
     });
   });
 });

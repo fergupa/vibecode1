@@ -54,6 +54,11 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
   const [creatingProject, setCreatingProject] = useState(false);
   const [createdProject, setCreatedProject] = useState<CreatedProject | null>(null);
 
+  // Step 1b: SSC Locations
+  const [sscLocations, setSSCLocations] = useState<
+    { name: string; salary: string; isDefault: boolean }[]
+  >([{ name: "Default SSC", salary: "75000", isDefault: true }]);
+
   // Step 2: Taxonomy
   const [seeding, setSeeding] = useState(false);
   const [uploadingTaxonomy, setUploadingTaxonomy] = useState(false);
@@ -105,6 +110,7 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
     setProjectDescription("");
     setCreatingProject(false);
     setCreatedProject(null);
+    setSSCLocations([{ name: "Default SSC", salary: "75000", isDefault: true }]);
     setSeeding(false);
     setUploadingTaxonomy(false);
     setTaxonomyMessage(null);
@@ -133,7 +139,7 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
     // Re-fetch projects to get the full project object with _count
     const res = await fetch("/api/projects");
     if (res.ok) {
-      const allProjects: { id: string; name: string; description: string | null; sharedServicesSalary: number | null; createdAt: string; _count: { taxonomyNodes: number; employees: number; surveyCampaigns: number } }[] = await res.json();
+      const allProjects: { id: string; name: string; description: string | null; sharedServicesSalary: number | null; createdAt: string; closedAt: string | null; _count: { taxonomyNodes: number; employees: number; surveyCampaigns: number }; campaignStats: { total: number; draft: number; active: number; closed: number; totalAssignments: number; completedAssignments: number }; sharedServiceLocations?: { id: string; name: string; salary: number; isDefault: boolean }[] }[] = await res.json();
       const fullProject = allProjects.find((p) => p.id === createdProject?.id);
       if (fullProject) {
         selectProject(fullProject);
@@ -160,6 +166,13 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
         body: JSON.stringify({
           name: projectName.trim(),
           description: projectDescription.trim() || null,
+          sscLocations: sscLocations
+            .filter((loc) => loc.name.trim() && Number(loc.salary) > 0)
+            .map((loc) => ({
+              name: loc.name.trim(),
+              salary: Number(loc.salary),
+              isDefault: loc.isDefault,
+            })),
         }),
       });
       const data = await res.json();
@@ -403,6 +416,86 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
                   onChange={(e) => setProjectDescription(e.target.value)}
                   placeholder="Brief description of the project"
                 />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Shared Service Locations</Label>
+                <p className="text-xs text-gray-500">
+                  Define SSC locations and their average fully-loaded salary. The
+                  default location is used unless overridden per activity.
+                </p>
+                {sscLocations.map((loc, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <Input
+                      value={loc.name}
+                      onChange={(e) => {
+                        const updated = [...sscLocations];
+                        updated[i] = { ...updated[i], name: e.target.value };
+                        setSSCLocations(updated);
+                      }}
+                      placeholder="Location name"
+                      className="flex-1"
+                    />
+                    <Input
+                      type="number"
+                      value={loc.salary}
+                      onChange={(e) => {
+                        const updated = [...sscLocations];
+                        updated[i] = { ...updated[i], salary: e.target.value };
+                        setSSCLocations(updated);
+                      }}
+                      placeholder="Salary"
+                      className="w-28"
+                    />
+                    <label className="flex items-center gap-1 text-xs text-gray-500 whitespace-nowrap">
+                      <input
+                        type="radio"
+                        name="ssc-default"
+                        checked={loc.isDefault}
+                        onChange={() => {
+                          setSSCLocations(
+                            sscLocations.map((l, j) => ({
+                              ...l,
+                              isDefault: j === i,
+                            }))
+                          );
+                        }}
+                      />
+                      Default
+                    </label>
+                    {sscLocations.length > 1 && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 px-2 text-red-500"
+                        onClick={() => {
+                          const updated = sscLocations.filter((_, j) => j !== i);
+                          // If we removed the default, make the first one default
+                          if (loc.isDefault && updated.length > 0) {
+                            updated[0] = { ...updated[0], isDefault: true };
+                          }
+                          setSSCLocations(updated);
+                        }}
+                      >
+                        Remove
+                      </Button>
+                    )}
+                  </div>
+                ))}
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    setSSCLocations([
+                      ...sscLocations,
+                      { name: "", salary: "75000", isDefault: false },
+                    ])
+                  }
+                >
+                  Add Location
+                </Button>
               </div>
             </>
           )}

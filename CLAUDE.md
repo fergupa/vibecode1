@@ -1,6 +1,42 @@
-# Vibe Code System
+# Activity Assessment & Shared Services Tool
 
-This is a template project for vibe coding sessions with Claude Code.
+A Next.js 16 web application for organizational process assessment and shared services business case development. Collects employee time-allocation data through surveys, analyzes gaps between current and preferred work locations, and builds cost-based business cases.
+
+## Architecture
+
+- **Next.js App Router** with TypeScript, Tailwind CSS 4, shadcn/ui
+- **PostgreSQL** via Prisma 7 ORM (schema in `prisma/schema.prisma`)
+- **NextAuth.js** credentials auth protecting `/admin/*` routes
+- **Two user surfaces:** Admin (authenticated) and Respondent (token-based, no login)
+
+## Key Models
+
+- **Project** - Top-level container scoping all data
+- **TaxonomyNode** - Self-referential tree (APQC hierarchy: Category > Process Group > Process > Activity) with `preferredLocation` tagging
+- **Employee** - Staff data with salary, FTE, location, department
+- **SurveyCampaign** - Individual or RoleBased mode, status lifecycle (Draft > Active > Closed)
+- **SurveyAssignment** - Per-respondent with unique token
+- **SurveyResponse** - Time allocation per taxonomy node (must sum to 100%)
+
+## Key Directories
+
+- `src/app/admin/` - Protected admin pages (projects, taxonomy, employees, surveys, analysis)
+- `src/app/api/projects/` - REST API with nested resources (taxonomy, employees, campaigns, analysis)
+- `src/app/api/survey/[token]/` and `src/app/survey/[token]/` - Public respondent endpoints/pages
+- `src/components/analysis/` - Visualization components (heat map, sunburst, waterfall, summary table)
+- `src/lib/analysis/` - Gap analysis engine, cost model, aggregation logic
+- `src/lib/export/` - PDF and Excel report generation
+- `src/__tests__/` - Vitest tests with shared Prisma mock (`src/__mocks__/prisma.ts`)
+- `src/data/apqc-template.json` - Default 285-entry APQC taxonomy
+
+## Conventions
+
+- API routes follow REST patterns under `/api/projects/[id]/...`
+- Prisma client singleton in `src/lib/prisma.ts`
+- shadcn/ui components in `src/components/ui/`
+- Tests use Vitest with mocked Prisma client; run with `npm test`
+- Design docs saved to `docs/plans/YYYY-MM-DD-<topic>-design.md`
+- Default admin credentials: `admin` / `admin` (seed script in `prisma/seed.ts`)
 
 ## Skills
 

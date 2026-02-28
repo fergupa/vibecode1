@@ -5,12 +5,13 @@ import { useProject } from "@/lib/project-context";
 import { ProjectSetupWizard } from "@/components/project-setup-wizard";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function ActiveProjectsPage() {
   const router = useRouter();
@@ -33,9 +34,14 @@ export default function ActiveProjectsPage() {
     await refreshProjects();
   }
 
-  function handleSelectProject(project: typeof projects[0]) {
+  function handleNavigate(
+    e: React.MouseEvent,
+    project: (typeof projects)[0],
+    path: string
+  ) {
+    e.stopPropagation();
     selectProject(project);
-    router.push("/admin");
+    router.push(path);
   }
 
   if (loading) {
@@ -58,62 +64,98 @@ export default function ActiveProjectsPage() {
           No active projects. Click &quot;New Project&quot; to create one.
         </p>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {activeProjects.map((project) => (
-            <Card
-              key={project.id}
-              className={`cursor-pointer transition-shadow hover:shadow-md ${
-                selectedProject?.id === project.id
-                  ? "ring-2 ring-blue-500"
-                  : ""
-              }`}
-              onClick={() => handleSelectProject(project)}
-            >
-              <CardHeader>
-                <CardTitle className="text-lg">{project.name}</CardTitle>
-                {project.description && (
-                  <CardDescription>{project.description}</CardDescription>
-                )}
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2 text-sm text-gray-500">
-                  <div className="flex gap-4">
-                    <span>
-                      {project._count.taxonomyNodes > 200
-                        ? `${project._count.taxonomyNodes} APQC nodes`
-                        : `${project._count.taxonomyNodes} taxonomy nodes`}
-                    </span>
-                    <span>{project._count.employees} employees</span>
-                  </div>
-                  {project.campaignStats.total > 0 && (
-                    <div>
-                      {project.campaignStats.active > 0 && (
-                        <span>
-                          {project.campaignStats.active} active campaign{project.campaignStats.active !== 1 ? "s" : ""}
-                        </span>
-                      )}
-                      {project.campaignStats.totalAssignments > 0 && (
-                        <span className="ml-2">
-                          {project.campaignStats.completedAssignments}/
-                          {project.campaignStats.totalAssignments} responses
-                        </span>
-                      )}
-                    </div>
-                  )}
-                </div>
-                <div className="mt-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={(e) => handleCloseProject(e, project.id)}
-                  >
-                    Close Project
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Employees</TableHead>
+              <TableHead>Responses</TableHead>
+              <TableHead>% Submitted</TableHead>
+              <TableHead>Taxonomy</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {activeProjects.map((project) => {
+              const pct =
+                project.campaignStats.totalAssignments > 0
+                  ? Math.round(
+                      (project.campaignStats.completedAssignments /
+                        project.campaignStats.totalAssignments) *
+                        100
+                    )
+                  : null;
+
+              const statusParts: string[] = [];
+              if (project.campaignStats.active > 0)
+                statusParts.push(`${project.campaignStats.active} active`);
+              if (project.campaignStats.draft > 0)
+                statusParts.push(`${project.campaignStats.draft} draft`);
+              if (project.campaignStats.closed > 0)
+                statusParts.push(`${project.campaignStats.closed} closed`);
+
+              return (
+                <TableRow
+                  key={project.id}
+                  className={
+                    selectedProject?.id === project.id ? "bg-blue-50" : ""
+                  }
+                >
+                  <TableCell>
+                    <button
+                      className="font-medium text-blue-600 hover:underline"
+                      onClick={(e) => handleNavigate(e, project, "/admin")}
+                    >
+                      {project.name}
+                    </button>
+                  </TableCell>
+                  <TableCell className="text-gray-500">
+                    {statusParts.length > 0
+                      ? statusParts.join(", ")
+                      : "No campaigns"}
+                  </TableCell>
+                  <TableCell>
+                    <button
+                      className="text-blue-600 hover:underline"
+                      onClick={(e) =>
+                        handleNavigate(e, project, "/admin/employees")
+                      }
+                    >
+                      {project._count.employees}
+                    </button>
+                  </TableCell>
+                  <TableCell>
+                    {project.campaignStats.totalAssignments > 0
+                      ? `${project.campaignStats.completedAssignments}/${project.campaignStats.totalAssignments}`
+                      : "—"}
+                  </TableCell>
+                  <TableCell>{pct !== null ? `${pct}%` : "—"}</TableCell>
+                  <TableCell>
+                    <button
+                      className="text-blue-600 hover:underline"
+                      onClick={(e) =>
+                        handleNavigate(e, project, "/admin/taxonomy")
+                      }
+                    >
+                      {project._count.taxonomyNodes}
+                      {project._count.taxonomyNodes > 200 ? " APQC" : " nodes"}
+                    </button>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={(e) => handleCloseProject(e, project.id)}
+                    >
+                      Close Project
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
       )}
     </div>
   );

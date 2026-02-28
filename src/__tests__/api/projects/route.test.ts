@@ -38,6 +38,7 @@ describe("GET /api/projects", () => {
         closedAt: null,
         _count: { taxonomyNodes: 0, employees: 0, surveyCampaigns: 0 },
         surveyCampaigns: [],
+        sharedServiceLocations: [],
       },
     ];
     prisma.project.findMany.mockResolvedValue(mockProjects);
@@ -100,7 +101,12 @@ describe("POST /api/projects", () => {
   it("creates project with valid name", async () => {
     mockedGetServerSession.mockResolvedValue({ user: { name: "admin" } });
 
-    const mockProject = { id: "1", name: "New Project", description: null };
+    const mockProject = {
+      id: "1",
+      name: "New Project",
+      description: null,
+      sharedServiceLocations: [],
+    };
     prisma.project.create.mockResolvedValue(mockProject);
 
     const req = new NextRequest("http://localhost/api/projects", {
@@ -115,6 +121,7 @@ describe("POST /api/projects", () => {
     expect(body).toEqual(mockProject);
     expect(prisma.project.create).toHaveBeenCalledWith({
       data: { name: "New Project", description: "A desc" },
+      include: { sharedServiceLocations: true },
     });
   });
 });
