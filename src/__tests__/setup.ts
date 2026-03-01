@@ -56,5 +56,20 @@ vi.mock("@/lib/prisma", () => ({
       findMany: vi.fn(),
       upsert: vi.fn(),
     },
+    sharedServiceLocation: {
+      findMany: vi.fn(),
+      findUnique: vi.fn(),
+      create: vi.fn(),
+      update: vi.fn(),
+      updateMany: vi.fn(),
+      delete: vi.fn(),
+    },
+    routingRule: {
+      findMany: vi.fn(),
+      findUnique: vi.fn(),
+      create: vi.fn(),
+      update: vi.fn(),
+      delete: vi.fn(),
+    },
   },
 }));
