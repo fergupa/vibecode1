@@ -11,6 +11,7 @@ type CsvRow = {
   Title: string;
   Department: string;
   Location: string;
+  Region: string;
   BusinessUnit: string;
   FullyLoadedSalary: string;
   FTE: string;
@@ -120,6 +121,7 @@ export async function POST(
         title: row.Title?.trim() || "",
         department: row.Department?.trim() || null,
         location: row.Location?.trim() || "",
+        region: row.Region?.trim() || null,
         businessUnit: row.BusinessUnit?.trim() || null,
         fullyLoadedSalary: row.FullyLoadedSalary?.trim()
           ? Number(row.FullyLoadedSalary)

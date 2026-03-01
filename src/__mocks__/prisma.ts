@@ -19,6 +19,13 @@ export const prisma = {
     updateMany: vi.fn(),
     delete: vi.fn(),
   },
+  routingRule: {
+    findMany: vi.fn(),
+    findUnique: vi.fn(),
+    create: vi.fn(),
+    update: vi.fn(),
+    delete: vi.fn(),
+  },
   taxonomyNode: {
     findMany: vi.fn(),
     create: vi.fn(),

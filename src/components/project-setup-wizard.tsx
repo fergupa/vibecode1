@@ -542,7 +542,7 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
             <>
               <p className="text-sm text-gray-500">
                 Upload a CSV with columns: EmployeeID, Name, Email, Title,
-                Department, Location, BusinessUnit, FullyLoadedSalary, FTE,
+                Department, Location, Region, BusinessUnit, FullyLoadedSalary, FTE,
                 JobFamily
               </p>
               <input
