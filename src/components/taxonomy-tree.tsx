@@ -36,8 +36,10 @@ function naturalCodeCompare(a: string, b: string): number {
   const aParts = a.split(".").map(Number);
   const bParts = b.split(".").map(Number);
   for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
-    const aVal = aParts[i] ?? 0;
-    const bVal = bParts[i] ?? 0;
+    const aNum = aParts[i] ?? 0;
+    const bNum = bParts[i] ?? 0;
+    const aVal = isNaN(aNum) ? 0 : aNum;
+    const bVal = isNaN(bNum) ? 0 : bNum;
     if (aVal !== bVal) return aVal - bVal;
   }
   return 0;
