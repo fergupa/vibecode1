@@ -18,7 +18,13 @@ export async function GET(
 
   const project = await prisma.project.findUnique({
     where: { id },
-    select: { sharedServicesSalary: true, sharedServiceLocations: true },
+    select: {
+      sharedServicesSalary: true,
+      sharedServiceLocations: true,
+      routingRules: {
+        select: { regionMatch: true, categoryMatch: true, sscLocationId: true },
+      },
+    },
   });
 
   if (!project)
@@ -61,7 +67,7 @@ export async function GET(
 
   // Run analysis pipeline
   const gapAnalysis = await runGapAnalysis(id);
-  const costModel = computeCostModel(gapAnalysis, sscSalaryMap);
+  const costModel = computeCostModel(gapAnalysis, sscSalaryMap, project.routingRules);
   const { nodes, totals } = aggregateResults(gapAnalysis, costModel);
 
   return NextResponse.json({
