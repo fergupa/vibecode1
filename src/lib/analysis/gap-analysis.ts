@@ -6,6 +6,12 @@ export type LocationBreakdown = {
   cost: number;
 };
 
+export type RegionCostBreakdown = {
+  region: string | null;
+  fte: number;
+  cost: number;
+};
+
 export type ActivityAnalysis = {
   nodeId: string;
   nodeCode: string;
@@ -22,6 +28,8 @@ export type ActivityAnalysis = {
   fteAtNonPreferred: number;
   costAtPreferred: number;
   costAtNonPreferred: number;
+  nonPreferredByRegion: RegionCostBreakdown[];
+  categoryCode: string | null;
 };
 
 /**
@@ -90,6 +98,39 @@ function computeEffectiveSSCLocations(
   return cache;
 }
 
+/**
+ * For each node, find its level-1 ancestor code.
+ * Level-1 nodes return their own code. Others walk up the tree.
+ */
+function computeCategoryCodes(
+  nodes: { id: string; code: string; level: number; parentId: string | null }[]
+): Map<string, string | null> {
+  const nodeMap = new Map(nodes.map((n) => [n.id, n]));
+  const cache = new Map<string, string | null>();
+
+  function getCategory(nodeId: string): string | null {
+    if (cache.has(nodeId)) return cache.get(nodeId)!;
+    const node = nodeMap.get(nodeId);
+    if (!node) return null;
+    if (node.level === 1) {
+      cache.set(nodeId, node.code);
+      return node.code;
+    }
+    if (node.parentId) {
+      const parentCat = getCategory(node.parentId);
+      cache.set(nodeId, parentCat);
+      return parentCat;
+    }
+    cache.set(nodeId, null);
+    return null;
+  }
+
+  for (const node of nodes) {
+    getCategory(node.id);
+  }
+  return cache;
+}
+
 export async function runGapAnalysis(projectId: string): Promise<ActivityAnalysis[]> {
   // Get all taxonomy nodes for the project
   const allNodes = await prisma.taxonomyNode.findMany({
@@ -102,6 +143,7 @@ export async function runGapAnalysis(projectId: string): Promise<ActivityAnalysi
 
   const effectiveLocations = computeEffectiveLocations(allNodes);
   const effectiveSSCLocations = computeEffectiveSSCLocations(allNodes);
+  const categoryCodes = computeCategoryCodes(allNodes);
 
   // Get all completed survey responses for this project
   const responses = await prisma.surveyResponse.findMany({
@@ -121,6 +163,7 @@ export async function runGapAnalysis(projectId: string): Promise<ActivityAnalysi
           employee: {
             select: {
               location: true,
+              region: true,
               fullyLoadedSalary: true,
               fte: true,
             },
@@ -147,6 +190,7 @@ export async function runGapAnalysis(projectId: string): Promise<ActivityAnalysi
     const effectiveLoc = effectiveLocations.get(node.id) || null;
 
     const locationMap = new Map<string, { fte: number; cost: number }>();
+    const regionMap = new Map<string | null, { fte: number; cost: number }>();
 
     for (const r of nodeResponses) {
       const pct = Number(r.percentTime);
@@ -165,6 +209,15 @@ export async function runGapAnalysis(projectId: string): Promise<ActivityAnalysi
         current.fte += weightedFte;
         current.cost += weightedCost;
         locationMap.set(location, current);
+
+        // Track region for non-preferred work (used by routing rules)
+        if (effectiveLoc && location !== effectiveLoc) {
+          const region = emp.region ?? null;
+          const currentRegion = regionMap.get(region) || { fte: 0, cost: 0 };
+          currentRegion.fte += weightedFte;
+          currentRegion.cost += weightedCost;
+          regionMap.set(region, currentRegion);
+        }
       } else {
         // Role-based mode — use headcount, no salary/location data per se
         const location = "Unknown";
@@ -213,6 +266,12 @@ export async function runGapAnalysis(projectId: string): Promise<ActivityAnalysi
       fteAtNonPreferred,
       costAtPreferred,
       costAtNonPreferred,
+      nonPreferredByRegion: [...regionMap.entries()].map(([region, data]) => ({
+        region,
+        fte: data.fte,
+        cost: data.cost,
+      })),
+      categoryCode: categoryCodes.get(node.id) || null,
     });
   }
 

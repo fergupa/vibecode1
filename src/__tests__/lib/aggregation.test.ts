@@ -20,6 +20,8 @@ function makeAnalysis(overrides: Partial<ActivityAnalysis>): ActivityAnalysis {
     fteAtNonPreferred: 0,
     costAtPreferred: 0,
     costAtNonPreferred: 0,
+    nonPreferredByRegion: [],
+    categoryCode: null,
     ...overrides,
   };
 }

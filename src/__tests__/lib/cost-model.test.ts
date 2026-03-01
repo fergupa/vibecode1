@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { computeCostModel } from "@/lib/analysis/cost-model";
+import { computeCostModel, resolveSSCSalary } from "@/lib/analysis/cost-model";
+import type { RoutingRule } from "@/lib/analysis/cost-model";
 import type { ActivityAnalysis } from "@/lib/analysis/gap-analysis";
 
 function makeAnalysis(overrides: Partial<ActivityAnalysis> = {}): ActivityAnalysis {
@@ -19,6 +20,8 @@ function makeAnalysis(overrides: Partial<ActivityAnalysis> = {}): ActivityAnalys
     fteAtNonPreferred: 6,
     costAtPreferred: 400_000,
     costAtNonPreferred: 600_000,
+    nonPreferredByRegion: [],
+    categoryCode: "1.0",
     ...overrides,
   };
 }
@@ -119,5 +122,81 @@ describe("computeCostModel", () => {
     // n3: default — 4 * 75K = 300K, savings = 400K - 300K = 100K
     expect(results[2].futureCost).toBe(300_000);
     expect(results[2].savings).toBe(100_000);
+  });
+
+  it("uses routing rules to compute region-aware future cost", () => {
+    const sscMap = new Map<string | null, number>([
+      [null, 75_000],
+      ["loc-mexico", 45_000],
+      ["loc-poland", 55_000],
+    ]);
+    const rules: RoutingRule[] = [
+      { regionMatch: "Americas", categoryMatch: "8.0", sscLocationId: "loc-mexico" },
+      { regionMatch: "Europe", categoryMatch: "8.0", sscLocationId: "loc-poland" },
+    ];
+    const analyses = [
+      makeAnalysis({
+        nodeCode: "8.3.2.1",
+        categoryCode: "8.0",
+        fteAtNonPreferred: 6,
+        costAtNonPreferred: 600_000,
+        nonPreferredByRegion: [
+          { region: "Americas", fte: 4, cost: 400_000 },
+          { region: "Europe", fte: 2, cost: 200_000 },
+        ],
+      }),
+    ];
+
+    const results = computeCostModel(analyses, sscMap, rules);
+    // Americas: 4 * 45K = 180K, Europe: 2 * 55K = 110K, total = 290K
+    expect(results[0].futureCost).toBe(290_000);
+    expect(results[0].savings).toBe(310_000);
+  });
+});
+
+describe("resolveSSCSalary", () => {
+  const sscSalaryMap = new Map<string | null, number>([
+    [null, 75_000],
+    ["loc-mexico", 45_000],
+    ["loc-poland", 55_000],
+    ["loc-india", 40_000],
+  ]);
+
+  const rules: RoutingRule[] = [
+    { regionMatch: "Americas", categoryMatch: "8.0", sscLocationId: "loc-mexico" },
+    { regionMatch: "Europe", categoryMatch: "8.0", sscLocationId: "loc-poland" },
+    { regionMatch: "Asia", categoryMatch: null, sscLocationId: "loc-india" },
+    { regionMatch: null, categoryMatch: "6.0", sscLocationId: "loc-poland" },
+  ];
+
+  it("matches region + category (most specific)", () => {
+    const salary = resolveSSCSalary("Americas", "8.0", null, rules, sscSalaryMap);
+    expect(salary).toBe(45_000);
+  });
+
+  it("matches region-only when no region+category rule exists", () => {
+    const salary = resolveSSCSalary("Asia", "1.0", null, rules, sscSalaryMap);
+    expect(salary).toBe(40_000);
+  });
+
+  it("matches category-only when no region rule exists", () => {
+    const salary = resolveSSCSalary("Africa", "6.0", null, rules, sscSalaryMap);
+    expect(salary).toBe(55_000);
+  });
+
+  it("falls back to node SSC location when no rule matches", () => {
+    const salary = resolveSSCSalary("Africa", "1.0", "loc-mexico", rules, sscSalaryMap);
+    expect(salary).toBe(45_000);
+  });
+
+  it("falls back to project default when nothing matches", () => {
+    const salary = resolveSSCSalary("Africa", "1.0", null, rules, sscSalaryMap);
+    expect(salary).toBe(75_000);
+  });
+
+  it("falls back to 75000 when no default exists", () => {
+    const emptySscMap = new Map<string | null, number>();
+    const salary = resolveSSCSalary("Africa", "1.0", null, [], emptySscMap);
+    expect(salary).toBe(75_000);
   });
 });
