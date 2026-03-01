@@ -12,8 +12,10 @@ A Next.js 16 web application for organizational process assessment and shared se
 ## Key Models
 
 - **Project** - Top-level container scoping all data
-- **TaxonomyNode** - Self-referential tree (APQC hierarchy: Category > Process Group > Process > Activity) with `preferredLocation` tagging
-- **Employee** - Staff data with salary, FTE, location, department
+- **TaxonomyNode** - Self-referential tree (APQC hierarchy: Category > Process Group > Process > Activity) with `preferredLocation` tagging and optional `sharedServiceLocationId` override
+- **Employee** - Staff data with salary, FTE, location, region, department
+- **SharedServiceLocation** - Per-project SSC locations with different salary costs; one marked as default
+- **RoutingRule** - Per-project rules mapping employee region + APQC category to SSC locations (most-specific-match wins)
 - **SurveyCampaign** - Individual or RoleBased mode, status lifecycle (Draft > Active > Closed)
 - **SurveyAssignment** - Per-respondent with unique token
 - **SurveyResponse** - Time allocation per taxonomy node (must sum to 100%)
@@ -21,13 +23,13 @@ A Next.js 16 web application for organizational process assessment and shared se
 ## Key Directories
 
 - `src/app/admin/` - Protected admin pages (projects, taxonomy, employees, surveys, analysis)
-- `src/app/api/projects/` - REST API with nested resources (taxonomy, employees, campaigns, analysis)
+- `src/app/api/projects/` - REST API with nested resources (taxonomy, employees, campaigns, analysis, ssc-locations, routing-rules)
 - `src/app/api/survey/[token]/` and `src/app/survey/[token]/` - Public respondent endpoints/pages
 - `src/components/analysis/` - Visualization components (heat map, sunburst, waterfall, summary table)
 - `src/lib/analysis/` - Gap analysis engine, cost model, aggregation logic
 - `src/lib/export/` - PDF and Excel report generation
 - `src/__tests__/` - Vitest tests with shared Prisma mock (`src/__mocks__/prisma.ts`)
-- `src/data/apqc-template.json` - Default 285-entry APQC taxonomy
+- `src/data/apqc-template.json` - Default 285-entry APQC taxonomy with best-practice preferred locations on level-1 categories
 
 ## Conventions
 

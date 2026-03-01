@@ -69,7 +69,7 @@ src/
   __tests__/            # Vitest tests (API routes, lib functions, middleware)
   __mocks__/            # Shared test mocks (Prisma)
   data/
-    apqc-template.json  # Default APQC taxonomy (285 entries)
+    apqc-template.json  # Default APQC taxonomy (285 entries, level-1 categories include preferred locations)
 prisma/
   schema.prisma         # Database schema
   seed.ts               # Seed script
@@ -79,11 +79,14 @@ docs/plans/             # Design and implementation documents
 ## Key Features
 
 ### Admin (requires login)
-- **Project Management** - Create and manage assessment projects
-- **Taxonomy Management** - Interactive tree editor with APQC template, CSV/Excel import, preferred location tagging (Corporate, BusinessUnit, SharedServices)
-- **Employee Data** - Import via CSV/Excel, searchable/sortable table, salary and FTE tracking
+- **Project Management** - Create and manage assessment projects with SSC locations and routing rules
+- **Taxonomy Management** - Interactive tree editor with APQC template (includes best-practice preferred location defaults), CSV/Excel import, preferred location tagging (Corporate, BusinessUnit, SharedServices), per-node SSC location override
+- **Employee Data** - Import via CSV/Excel with region support, searchable/sortable table, salary and FTE tracking
+- **SSC Locations** - Multiple shared service center locations per project with different salary costs
+- **Routing Rules** - Region-based and/or APQC-category-based rules to route employees to specific SSC locations for cost modeling (most-specific-match wins)
 - **Survey Campaigns** - Individual or role-based modes, unique respondent links, response rate tracking
 - **Gap Analysis** - Heat map, sunburst chart, waterfall chart, summary table, KPI cards
+- **Cost Model** - Region-aware savings calculations using routing rules, SSC location salaries, and employee data
 - **Exports** - PDF executive summary, Excel detailed report
 
 ### Respondent (no login, token-based)
