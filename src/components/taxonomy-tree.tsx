@@ -28,6 +28,21 @@ type TaxonomyTreeProps = {
   onAddChild: (parentId: string) => void;
 };
 
+/**
+ * Compare two dotted-numeric code strings numerically.
+ * e.g. "2.0" < "10.0", "1.1.2" < "1.1.10"
+ */
+function naturalCodeCompare(a: string, b: string): number {
+  const aParts = a.split(".").map(Number);
+  const bParts = b.split(".").map(Number);
+  for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+    const aVal = aParts[i] ?? 0;
+    const bVal = bParts[i] ?? 0;
+    if (aVal !== bVal) return aVal - bVal;
+  }
+  return 0;
+}
+
 function buildTree(flatNodes: TaxonomyNode[]): TreeNode[] {
   const map = new Map<string, TreeNode>();
   const roots: TreeNode[] = [];
@@ -46,6 +61,12 @@ function buildTree(flatNodes: TaxonomyNode[]): TreeNode[] {
       roots.push(treeNode);
     }
   }
+
+  // Sort children numerically by code
+  for (const node of map.values()) {
+    node.children.sort((a, b) => naturalCodeCompare(a.code, b.code));
+  }
+  roots.sort((a, b) => naturalCodeCompare(a.code, b.code));
 
   // Compute effective locations
   function computeLocations(nodes: TreeNode[], parentLocation: string | null) {
