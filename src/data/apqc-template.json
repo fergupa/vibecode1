@@ -4,7 +4,8 @@
     "name": "Develop Vision and Strategy",
     "level": 1,
     "parentCode": null,
-    "description": "Define and develop the organization's vision, mission, and long-term strategic direction."
+    "description": "Define and develop the organization's vision, mission, and long-term strategic direction.",
+    "preferredLocation": "Corporate"
   },
   {
     "code": "1.1",
@@ -165,7 +166,8 @@
     "name": "Develop and Manage Products and Services",
     "level": 1,
     "parentCode": null,
-    "description": "Design, develop, and manage the organization's portfolio of products and services."
+    "description": "Design, develop, and manage the organization's portfolio of products and services.",
+    "preferredLocation": "BusinessUnit"
   },
   {
     "code": "2.1",
@@ -319,7 +321,8 @@
     "name": "Market and Sell Products and Services",
     "level": 1,
     "parentCode": null,
-    "description": "Understand markets, manage customer relationships, and sell products and services."
+    "description": "Understand markets, manage customer relationships, and sell products and services.",
+    "preferredLocation": "BusinessUnit"
   },
   {
     "code": "3.1",
@@ -473,7 +476,8 @@
     "name": "Deliver Products and Services",
     "level": 1,
     "parentCode": null,
-    "description": "Plan, procure, produce, and deliver products and services to customers."
+    "description": "Plan, procure, produce, and deliver products and services to customers.",
+    "preferredLocation": "BusinessUnit"
   },
   {
     "code": "4.1",
@@ -627,7 +631,8 @@
     "name": "Manage Customer Service",
     "level": 1,
     "parentCode": null,
-    "description": "Plan and manage customer service operations, handle inquiries, and ensure customer satisfaction."
+    "description": "Plan and manage customer service operations, handle inquiries, and ensure customer satisfaction.",
+    "preferredLocation": "BusinessUnit"
   },
   {
     "code": "5.1",
@@ -781,7 +786,8 @@
     "name": "Develop and Manage Human Capital",
     "level": 1,
     "parentCode": null,
-    "description": "Attract, develop, retain, and manage the organization's workforce."
+    "description": "Attract, develop, retain, and manage the organization's workforce.",
+    "preferredLocation": "SharedServices"
   },
   {
     "code": "6.1",
@@ -984,7 +990,8 @@
     "name": "Manage Information Technology",
     "level": 1,
     "parentCode": null,
-    "description": "Manage the enterprise IT function including strategy, infrastructure, applications, and security."
+    "description": "Manage the enterprise IT function including strategy, infrastructure, applications, and security.",
+    "preferredLocation": "SharedServices"
   },
   {
     "code": "7.1",
@@ -1138,7 +1145,8 @@
     "name": "Manage Financial Resources",
     "level": 1,
     "parentCode": null,
-    "description": "Plan, manage, account for, and report on the organization's financial resources."
+    "description": "Plan, manage, account for, and report on the organization's financial resources.",
+    "preferredLocation": "SharedServices"
   },
   {
     "code": "8.1",
@@ -1292,7 +1300,8 @@
     "name": "Acquire, Construct, and Manage Assets",
     "level": 1,
     "parentCode": null,
-    "description": "Plan, acquire, maintain, and dispose of the organization's physical and intangible assets."
+    "description": "Plan, acquire, maintain, and dispose of the organization's physical and intangible assets.",
+    "preferredLocation": "SharedServices"
   },
   {
     "code": "9.1",
@@ -1446,7 +1455,8 @@
     "name": "Manage Enterprise Risk, Compliance, Remediation, and Resiliency",
     "level": 1,
     "parentCode": null,
-    "description": "Identify, assess, and manage enterprise risks, ensure regulatory compliance, and build organizational resiliency."
+    "description": "Identify, assess, and manage enterprise risks, ensure regulatory compliance, and build organizational resiliency.",
+    "preferredLocation": "Corporate"
   },
   {
     "code": "10.1",
@@ -1600,7 +1610,8 @@
     "name": "Manage External Relationships",
     "level": 1,
     "parentCode": null,
-    "description": "Build and manage relationships with external stakeholders including investors, government, and the community."
+    "description": "Build and manage relationships with external stakeholders including investors, government, and the community.",
+    "preferredLocation": "Corporate"
   },
   {
     "code": "11.1",
@@ -1712,7 +1723,8 @@
     "name": "Develop and Manage Business Capabilities",
     "level": 1,
     "parentCode": null,
-    "description": "Manage business processes, knowledge, change, and quality to build organizational capabilities."
+    "description": "Manage business processes, knowledge, change, and quality to build organizational capabilities.",
+    "preferredLocation": "SharedServices"
   },
   {
     "code": "12.1",
@@ -1845,7 +1857,8 @@
     "name": "Manage Health, Safety, Environment, and Sustainability",
     "level": 1,
     "parentCode": null,
-    "description": "Manage environmental health and safety programs, sustainability initiatives, and regulatory compliance."
+    "description": "Manage environmental health and safety programs, sustainability initiatives, and regulatory compliance.",
+    "preferredLocation": "Corporate"
   },
   {
     "code": "13.1",

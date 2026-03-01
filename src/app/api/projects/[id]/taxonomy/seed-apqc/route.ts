@@ -10,6 +10,7 @@ type ApqcEntry = {
   level: number;
   parentCode: string | null;
   description: string | null;
+  preferredLocation?: string | null;
 };
 
 export async function POST(
@@ -47,6 +48,10 @@ export async function POST(
         level: entry.level,
         description: entry.description,
         sortOrder: 0,
+        ...(entry.preferredLocation && {
+          preferredLocation: entry.preferredLocation as "Corporate" | "BusinessUnit" | "SharedServices",
+          locationInherited: false,
+        }),
       },
     });
     codeToId[entry.code] = node.id;
