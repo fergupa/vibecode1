@@ -41,6 +41,22 @@ type ProjectSetupWizardProps = {
   onComplete: () => Promise<void>;
 };
 
+const APQC_CATEGORIES = [
+  { code: "1.0", name: "Develop Vision and Strategy" },
+  { code: "2.0", name: "Develop and Manage Products and Services" },
+  { code: "3.0", name: "Market and Sell Products and Services" },
+  { code: "4.0", name: "Deliver Products and Services" },
+  { code: "5.0", name: "Manage Customer Service" },
+  { code: "6.0", name: "Develop and Manage Human Capital" },
+  { code: "7.0", name: "Manage Information Technology" },
+  { code: "8.0", name: "Manage Financial Resources" },
+  { code: "9.0", name: "Acquire, Construct, and Manage Assets" },
+  { code: "10.0", name: "Manage Enterprise Risk, Compliance" },
+  { code: "11.0", name: "Manage External Relationships" },
+  { code: "12.0", name: "Develop and Manage Business Capabilities" },
+  { code: "13.0", name: "Manage Health, Safety, Environment" },
+];
+
 export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
   const router = useRouter();
   const { refreshProjects, selectProject } = useProject();
@@ -58,6 +74,11 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
   const [sscLocations, setSSCLocations] = useState<
     { name: string; salary: string; isDefault: boolean }[]
   >([{ name: "Default SSC", salary: "75000", isDefault: true }]);
+
+  // Step 1c: Routing Rules
+  const [routingRules, setRoutingRules] = useState<
+    { regionMatch: string; categoryMatch: string; sscLocationIndex: number }[]
+  >([]);
 
   // Step 2: Taxonomy
   const [seeding, setSeeding] = useState(false);
@@ -111,6 +132,7 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
     setCreatingProject(false);
     setCreatedProject(null);
     setSSCLocations([{ name: "Default SSC", salary: "75000", isDefault: true }]);
+    setRoutingRules([]);
     setSeeding(false);
     setUploadingTaxonomy(false);
     setTaxonomyMessage(null);
@@ -179,6 +201,28 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
       if (!res.ok) {
         setError(data.error || "Failed to create project");
       } else {
+        // Create routing rules
+        if (routingRules.length > 0) {
+          const sscRes = await fetch(`/api/projects/${data.id}/ssc-locations`);
+          if (sscRes.ok) {
+            const createdSSCLocations: { id: string; name: string }[] = await sscRes.json();
+            for (const rule of routingRules) {
+              if (!rule.regionMatch && !rule.categoryMatch) continue;
+              const sscLoc = createdSSCLocations[rule.sscLocationIndex];
+              if (!sscLoc) continue;
+              await fetch(`/api/projects/${data.id}/routing-rules`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  regionMatch: rule.regionMatch || null,
+                  categoryMatch: rule.categoryMatch || null,
+                  sscLocationId: sscLoc.id,
+                }),
+              });
+            }
+          }
+        }
+
         setCreatedProject(data);
         setCurrentStep("taxonomy");
       }
@@ -495,6 +539,99 @@ export function ProjectSetupWizard({ onComplete }: ProjectSetupWizardProps) {
                   }
                 >
                   Add Location
+                </Button>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Routing Rules (Optional)</Label>
+                <p className="text-xs text-gray-500">
+                  Route employees to different SSC locations based on their region
+                  and/or activity category. Most specific rule wins.
+                </p>
+                {routingRules.map((rule, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <Select
+                      value={rule.regionMatch || "__any__"}
+                      onValueChange={(v) => {
+                        const updated = [...routingRules];
+                        updated[i] = { ...updated[i], regionMatch: v === "__any__" ? "" : v };
+                        setRoutingRules(updated);
+                      }}
+                    >
+                      <SelectTrigger className="flex-1">
+                        <SelectValue placeholder="Region" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="__any__">Any Region</SelectItem>
+                        <SelectItem value="Americas">Americas</SelectItem>
+                        <SelectItem value="Europe">Europe</SelectItem>
+                        <SelectItem value="Asia">Asia</SelectItem>
+                        <SelectItem value="Africa">Africa</SelectItem>
+                        <SelectItem value="Oceania">Oceania</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Select
+                      value={rule.categoryMatch || "__any__"}
+                      onValueChange={(v) => {
+                        const updated = [...routingRules];
+                        updated[i] = { ...updated[i], categoryMatch: v === "__any__" ? "" : v };
+                        setRoutingRules(updated);
+                      }}
+                    >
+                      <SelectTrigger className="flex-1">
+                        <SelectValue placeholder="Category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="__any__">Any Category</SelectItem>
+                        {APQC_CATEGORIES.map((cat) => (
+                          <SelectItem key={cat.code} value={cat.code}>
+                            {cat.code} {cat.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Select
+                      value={String(rule.sscLocationIndex)}
+                      onValueChange={(v) => {
+                        const updated = [...routingRules];
+                        updated[i] = { ...updated[i], sscLocationIndex: Number(v) };
+                        setRoutingRules(updated);
+                      }}
+                    >
+                      <SelectTrigger className="w-36">
+                        <SelectValue placeholder="SSC Location" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {sscLocations.map((loc, j) => (
+                          <SelectItem key={j} value={String(j)}>
+                            {loc.name || `Location ${j + 1}`}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 px-2 text-red-500"
+                      onClick={() => setRoutingRules(routingRules.filter((_, j) => j !== i))}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                ))}
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    setRoutingRules([
+                      ...routingRules,
+                      { regionMatch: "", categoryMatch: "", sscLocationIndex: 0 },
+                    ])
+                  }
+                >
+                  Add Rule
                 </Button>
               </div>
             </>
